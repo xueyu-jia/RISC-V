@@ -12,7 +12,7 @@ module Ifu(
     input wire[31:0] in_ins,
     output reg out_mem_valid,
     //保存当前PC的值
-    output wire[31:0] out_pc,
+    output reg[31:0] out_pc,
     //保存当前指令
     output wire[31:0] out_ins
 );
@@ -25,7 +25,7 @@ module Ifu(
         begin
             if(rst==`RST)   
                 begin
-                    out_mem_valid<=`MEM_VALID;
+                    out_mem_valid<=`MEM_INVALID;
                     out_pc<=`RST_PC;
                     n_pc<=`RST_PC;
                 end
@@ -39,7 +39,7 @@ module Ifu(
                 begin
                     out_mem_valid<=`MEM_VALID; 
                     out_pc<=n_pc;
-                    n_pc<=out_pc+32'h4;
+                    n_pc<=n_pc+32'h4;
                 end
         end
     

@@ -1,13 +1,13 @@
 `define RST    1'b1
-`define RST_PC 32'h00000000
+`define RST_PC 32'h80000000
 
 `define MEM_VALID 1'b1
-
+`define MEM_INVALID 1'b0
 
 `define INVALID_RID 5'00000
 
-`define INVALID_RegW  1'b1
-`define VALID_RegW    1'b0
+`define INVALID_RegW  1'b0
+`define VALID_RegW    1'b1
 
 `define INVALID_MemW  1'b1
 `define VALID_MemW    1'b0

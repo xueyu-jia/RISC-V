@@ -1,8 +1,8 @@
 module soc_mem(
-	input clk,
-	input [3:0] wen,
-	input [31:0] addr,
-	input [31:0] wdata,
+	input wire clk,
+	input wire [3:0] wen,
+	input wire [31:0] addr,
+	input wire[31:0] wdata,
 	output reg [31:0] rdata
 );
 	parameter MEM_BASE = 32'h80000000;
@@ -16,6 +16,7 @@ module soc_mem(
 	reg [31:0] mem[0:MEM_SIZE-1];
 	
 	wire[31:0] after_addr = (addr - MEM_BASE)>>2;
+	
 
 	always @(posedge clk) begin
 		rdata <= mem[after_addr];

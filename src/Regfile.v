@@ -33,7 +33,7 @@ module Regfile(
                 end
             else
                 begin
-                    if((in_We==`INVALID_RegW) && (in_W_id!=`ZERO_ID))
+                    if((in_We==`VALID_RegW) && (in_W_id!=`ZERO_ID))
                         begin
                             general_reg[in_W_id]<=in_W_data;
                         end

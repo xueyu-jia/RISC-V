@@ -1,5 +1,4 @@
 `include "Macro.v"
-/* verilator lint_off PINMISSING */
 module RV32I(
     input clk,
     input rst,
@@ -49,8 +48,6 @@ wire[31:0] Ifu_out_ins;
 wire       Ifu_out_mem_valid;  
 wire Ifu_in_jmp_en;
 wire[31:0] Ifu_in_jmp_addr;
-
-assign Ifu_in_ins = mem_rdata;
 
 Ifu RV32I_Ifu(
     .clk(clk),
@@ -229,8 +226,11 @@ assign mem_addr = ({32{Memu_out_mem_valid}}&Memu_out_mem_addr)|
 assign mem_valid=Memu_out_mem_valid|Ifu_out_mem_valid;
 assign mem_wstrb=Memu_out_mem_we;
 assign mem_wdata=Memu_out_mem_data;
+
 assign Memu_in_mem_data=mem_rdata;
 assign Ifu_in_ins=mem_rdata;
+
+//mem_instr为1时表示取指访存，为0时表示数据访存
 assign mem_instr=Ifu_out_mem_valid & !Memu_out_mem_valid;
 
 endmodule

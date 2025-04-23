@@ -32,8 +32,8 @@ class alignas(VL_CACHE_LINE_BYTES) VSoc VL_NOT_FINAL : public VerilatedModel {
     VL_IN8(&clk,0,0);
     VL_IN8(&rst,0,0);
     VL_IN8(&sim_in_wen,3,0);
-    VL_OUT(&sim_out_rdata,31,0);
     VL_IN(&sim_in_addr,31,0);
+    VL_OUT(&sim_out_rdata,31,0);
     VL_IN(&sim_in_wdata,31,0);
 
     // CELLS

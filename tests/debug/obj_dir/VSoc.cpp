@@ -13,8 +13,8 @@ VSoc::VSoc(VerilatedContext* _vcontextp__, const char* _vcname__)
     , clk{vlSymsp->TOP.clk}
     , rst{vlSymsp->TOP.rst}
     , sim_in_wen{vlSymsp->TOP.sim_in_wen}
-    , sim_out_rdata{vlSymsp->TOP.sim_out_rdata}
     , sim_in_addr{vlSymsp->TOP.sim_in_addr}
+    , sim_out_rdata{vlSymsp->TOP.sim_out_rdata}
     , sim_in_wdata{vlSymsp->TOP.sim_in_wdata}
     , rootp{&(vlSymsp->TOP)}
 {

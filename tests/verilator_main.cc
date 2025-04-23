@@ -40,6 +40,14 @@ int main(int argc, char **argv, char **env)
 	
 	//generator signature
 	generator_signature(sigmem_start,sigmem_end);
+	
+	if(tfp){
+		tfp->close();
+		delete tfp;
+	}
+	
+	delete top;
+	top=nullptr;
 	return 0;
 }
 
@@ -135,7 +143,6 @@ static inline void write_memory(uint32_t addr,uint32_t val){
 #define XLEN 32
 int load_bin(uint32_t _code_start){
 	const char* loadbin_path= arg_parse(arg_loadbin);
-	printf("%s\n",loadbin_path);
 	std::ifstream in_bin(loadbin_path,std::ios::binary);
 	if(!in_bin.is_open()) return errno;
 
@@ -146,7 +153,7 @@ int load_bin(uint32_t _code_start){
 	while(!in_bin.eof()){
 		val=0;
 		in_bin.read(reinterpret_cast<char*>(&val),sizeof(val));
-		printf("val %x\n",val);
+		printf("%x %x\n",addr,val);
 		write_memory(addr,val);
 		addr+=4;
 	}	
@@ -155,16 +162,22 @@ int load_bin(uint32_t _code_start){
 }
 
 void excitation_signal(void){
-	top->rst=1;
+	top->rst=0;
 	top->eval();
 
-	int t = 0;
-	while (!contextp->gotFinish()) {
-		if (t > 200)	top->rst = 0;
+	top->rst=1;
+	top->eval();
+	
+	while (contextp->time()<100) {
+		if (contextp->time() > 20)
+			top->rst = 0;
+		
 		top->clk = !top->clk;
 		top->eval();
 
-		if (tfp) tfp->dump (t);
-		t += 5;
+		if (tfp){
+			tfp->dump (contextp->time());
+		}
+		contextp->timeInc(1);
 	}
 }

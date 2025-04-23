@@ -1,4 +1,4 @@
-verilator_main.o: ../verilator_main.cc VSoc.h \
+verilator_main.o: ../../verilator_main.cc VSoc.h \
  /usr/local/share/verilator/include/verilated.h \
  /usr/local/share/verilator/include/verilatedos.h \
  /usr/local/share/verilator/include/verilated_config.h \

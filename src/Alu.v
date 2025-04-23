@@ -32,12 +32,12 @@ module Alu(
 
     wire[31:0] alu_src=in_src2|in_imm;
     wire[31:0] alu_src_2=in_src2;
-
+    
     assign out_data=({32{in_op[`ADD_OP]}}&(in_src1+alu_src))|
                     ({32{in_op[`SUB_OP]}}&(in_src1-alu_src))|
-                    ({32{in_op[`SL_OP]}}&(in_src1<<alu_src))|
-                    ({32{in_op[`SR_OP]}}&(in_src1>>alu_src))|
-                    ({32{in_op[`SA_OP]}}&(in_src1>>>alu_src))|
+                    ({32{in_op[`SL_OP]}}&(in_src1<<(alu_src[4:0])))|
+                    ({32{in_op[`SR_OP]}}&(in_src1>>(alu_src[4:0])))|
+                    ({32{in_op[`SA_OP]}}&(in_src1>>>(alu_src[4:0])))|
                     ({32{in_op[`AND_OP]}}&(in_src1&alu_src))|
                     ({32{in_op[`OR_OP]}}&(in_src1|alu_src))|
                     ({32{in_op[`XOR_OP]}}&(in_src1^alu_src))|

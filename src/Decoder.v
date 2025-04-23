@@ -36,21 +36,13 @@ module Decoder(
     wire[6:0] fuc7=in_ins[31:25];
 
     wire is_i=opcode==`I;
+    wire is_l=opcode==`L;
     wire is_u=(opcode==`LUI||opcode==`AUIPC);
-    wire is_j=(opcode==`JAL||opcode==`JALR);
     wire is_b=opcode==`B;
     wire is_s=opcode==`S;
     wire is_r=opcode==`R;
 
-    assign out_rs1_id=({5{(is_i||is_s||is_b||is_r)}}&in_ins[19:15])|5'b0;
-    assign out_rs2_id=({5{(is_s||is_b||is_r)}}&in_ins[24:20])|5'b0;
-    assign out_rd_id=({5{(is_i||is_u||is_j)}}&in_ins[11:7])|5'b0;
-    assign out_rd_we=(is_i||is_u||is_j)|1'b0;
 
-    assign out_src1=in_src1;
-    assign out_src2=in_src2;
-
-    
     wire is_addi=((is_i)&&(fuc3==`ADDI));
     wire is_slti=((is_i)&&(fuc3==`SLTI));
     wire is_sltiu=((is_i)&&(fuc3==`SLTIU));
@@ -82,26 +74,36 @@ module Decoder(
     wire is_bltu=((is_b)&&(fuc3==`BLTU));
     wire is_bgeu=((is_b)&&(fuc3==`BGEU));
     
-    wire is_lb=((is_i)&&(fuc3==`LB));
-    wire is_lh=((is_i)&&(fuc3==`LH));
-    wire is_lw=((is_i)&&(fuc3==`LW));
-    wire is_lbu=((is_i)&&(fuc3==`LBU));
-    wire is_lhu=((is_i)&&(fuc3==`LHU));
+    wire is_lb=((is_l)&&(fuc3==`LB));
+    wire is_lh=((is_l)&&(fuc3==`LH));
+    wire is_lw=((is_l)&&(fuc3==`LW));
+    wire is_lbu=((is_l)&&(fuc3==`LBU));
+    wire is_lhu=((is_l)&&(fuc3==`LHU));
     
     wire is_sb=((is_s)&&(fuc3==`SB));
     wire is_sh=((is_s)&&(fuc3==`SH));
     wire is_sw=((is_s)&&(fuc3==`SW));
     
-    wire is_jal=((is_j)&&(opcode==`JAL));
-    wire is_jalr=((is_j)&&(opcode==`JALR));
+    wire is_jal=(opcode==`JAL);
+    wire is_jalr=(opcode==`JALR);
+    wire is_j=is_jal||is_jalr;
 
-    assign out_imm=({32{is_i}}&{{20{in_ins[31]}},in_ins[31:20]})|
-                   ({32{is_u}}&(({32{is_auipc}}&in_pc)+({in_ins[31:12],12'b0})))|
-                   ({32{is_s}}&{{20{in_ins[31]}},in_ins[31:25],in_ins[11:7]})|
+    assign out_rs1_id=({5{(is_i||is_s||is_b||is_r||is_jalr)}}&in_ins[19:15])|5'b0;
+    assign out_rs2_id=({5{(is_s||is_b||is_r)}}&in_ins[24:20])|5'b0;
+    assign out_rd_id=({5{(is_i||is_u||is_j)}}&in_ins[11:7])|5'b0;
+    assign out_rd_we=(is_i||is_u||is_j||is_l)?`VALID_RegW:`INVALID_RegW;
+
+    assign out_src1=in_src1;
+    assign out_src2=in_src2;
+
+
+    assign out_imm=({32{is_i||is_jalr}}&{{21{in_ins[31]}},in_ins[30:20]})|
+                   ({32{is_u}}&(({32{is_auipc}}&in_pc)+({in_ins[31],in_ins[30:12],12'b0})))|
+                   ({32{is_s}}&{{21{in_ins[31]}},in_ins[30:25],in_ins[11:7]})|
                    (32'b0);
 
     //用到加法器的指令将out_alu_op[ADD_OP]置1
-    assign out_alu_op[`ADD_OP]=is_addi||is_add||is_lb||is_lh||is_lw||is_lbu||is_lhu||is_lui||is_auipc;
+    assign out_alu_op[`ADD_OP]=is_addi||is_add||is_lb||is_lh||is_lw||is_lbu||is_lhu||is_lui||is_auipc||is_jalr;
     //用到减法的指令将out_alu_op[SUB_OP]置1
     assign out_alu_op[`SUB_OP]=is_sub;
     //用到左移指令将out_alu_op[SL_OP]置1
@@ -135,7 +137,9 @@ module Decoder(
                       ({5{is_lhu}}&`LHU_MASK)|
                       5'b00000;
     
-    assign out_jump_addr=({32{is_j}}&{{12{in_pc[31]}},in_ins[19:12],in_ins[20],in_ins[30:21],1'b0})|
+    //JALR使用的是I型表示
+    assign out_jump_addr=({32{is_jal}}&(in_pc+{{12{in_ins[31]}},in_ins[19:12],in_ins[20],in_ins[30:21],1'b0}))|
+                         ({32{is_jalr}}& (in_pc+out_imm))|
                          ({32{is_b}}&{{20{in_pc[31]}},in_ins[7],in_ins[30:25],in_ins[11:8],1'b0});
 
     assign out_jump_en=is_jal||is_jalr||
