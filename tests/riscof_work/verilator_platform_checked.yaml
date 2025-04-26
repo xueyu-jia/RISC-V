@@ -1,11 +1,13 @@
 mtime:
-    implemented: false
+    implemented: true
+    address: 0xbff8
 mtimecmp:
-    implemented: false
+    implemented: true
+    address: 0x4000
 nmi:
-    address: 0x10000000
+    label: nmi_vector
 reset:
-    address: 0x80000000
+    label: reset_vector
 mtval_condition_writes:
     implemented: false
 scause_non_standard:

@@ -6,4 +6,4 @@ verilator_main.o: ../../verilator_main.cc VSoc.h \
  /usr/local/share/verilator/include/verilated_funcs.h \
  /usr/local/share/verilator/include/verilated_vcd_c.h \
  /usr/local/share/verilator/include/verilated.h \
- /usr/local/share/verilator/include/verilated_trace.h
+ /usr/local/share/verilator/include/verilated_trace.h VSoc___024root.h

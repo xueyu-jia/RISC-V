@@ -3,14 +3,19 @@ module RV32I(
     input clk,
     input rst,
     
-    output wire       mem_valid,
-	output wire       mem_instr,
+    output wire       codemem_valid,
+	output wire[31:0] codemem_addr,
+	input  wire[31:0] codemem_rdata,
+    output wire[31:0] codemem_ne_addr,
+    input  wire[31:0] codemem_ne_rdata,
+
 	//input             mem_ready,
 
-	output wire[31:0] mem_addr,
-	output wire[31:0] mem_wdata,
-	output wire[ 3:0] mem_wstrb,
-	input  wire[31:0] mem_rdata
+    output wire       datamem_valid,
+	output wire[31:0] datamem_addr,
+	input  wire[31:0] datamem_rdata,
+	output wire[31:0] datamem_wdata,
+	output wire[ 3:0] datamem_wstrb
 );
 
 
@@ -42,23 +47,31 @@ Regfile RV32I_Regfile(
 );
 
 
-wire[31:0] Ifu_in_ins;
+wire[31:0] Ifu_in_ins=codemem_rdata;
 wire[31:0] Ifu_out_pc;
 wire[31:0] Ifu_out_ins;
 wire       Ifu_out_mem_valid;  
 wire Ifu_in_jmp_en;
 wire[31:0] Ifu_in_jmp_addr;
+wire[31:0] Ifu_ne_in_ins=codemem_ne_rdata;
+wire[31:0] Ifu_ne_out_pc;
 
 Ifu RV32I_Ifu(
     .clk(clk),
     .rst(rst),
     .in_ins(Ifu_in_ins),
+    .ne_in_ins(Ifu_ne_in_ins),
     .out_mem_valid(Ifu_out_mem_valid),
     .out_pc(Ifu_out_pc),
+    .ne_out_pc(Ifu_ne_out_pc),
     .out_ins(Ifu_out_ins),
     .in_Jmp_en(Ifu_in_jmp_en),
     .in_Jmp_addr(Ifu_in_jmp_addr)
 );
+assign codemem_valid=Ifu_out_mem_valid;
+assign codemem_addr=Ifu_out_pc;
+assign codemem_ne_addr=Ifu_ne_out_pc;
+
 
 wire[31:0] Decoder_in_pc=Ifu_out_pc;
 wire[31:0] Decoder_in_ins=Ifu_out_ins;
@@ -155,7 +168,7 @@ Alu RV32I_Alu(
 
 
 wire[31:0] Memu_in_addr=Alu_out_mem_addr;
-wire[31:0] Memu_in_mem_data;
+wire[31:0] Memu_in_mem_data=datamem_rdata;
 
 wire[4:0] Memu_in_rd_id=Alu_out_rd_id;
 wire Memu_in_rd_we=Alu_out_rd_we;
@@ -198,6 +211,10 @@ Memu RV32I_Memu(
     .out_rd_data(Memu_out_rd_data)
 );
 
+assign datamem_valid=Memu_out_mem_valid;
+assign datamem_addr=Memu_out_mem_addr;
+assign datamem_wdata=Memu_out_mem_data;
+assign datamem_wstrb=Memu_out_mem_we;
 
 wire[4:0] Wbu_in_rd_id=Memu_out_rd_id;
 wire Wbu_in_rd_we=Memu_out_rd_we;
@@ -220,17 +237,5 @@ assign Regfile_in_rd_id = Wbu_out_rd_id;
 assign Regfile_in_rd_we = Wbu_out_rd_we;
 assign Regfile_in_data = Wbu_out_data;
 
-
-assign mem_addr = ({32{Memu_out_mem_valid}}&Memu_out_mem_addr)|
-                  ({32{Ifu_out_mem_valid}}&Ifu_out_pc);
-assign mem_valid=Memu_out_mem_valid|Ifu_out_mem_valid;
-assign mem_wstrb=Memu_out_mem_we;
-assign mem_wdata=Memu_out_mem_data;
-
-assign Memu_in_mem_data=mem_rdata;
-assign Ifu_in_ins=mem_rdata;
-
-//mem_instr为1时表示取指访存，为0时表示数据访存
-assign mem_instr=Ifu_out_mem_valid & !Memu_out_mem_valid;
 
 endmodule

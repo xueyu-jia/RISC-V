@@ -18,8 +18,6 @@ logger = logging.getLogger()
 class spike(pluginTemplate):
     __model__ = "spike"
 
-    # please update the below to indicate family, version, etc of your DUT.
-    __version__ = "1.1.1-dev"
 
     def __init__(self, *args, **kwargs):
         sclass = super().__init__(*args, **kwargs)
@@ -65,8 +63,7 @@ class spike(pluginTemplate):
             self.isa += 'i'
         if "M" in ispec["ISA"]:
             self.isa += 'm'
-        if "C" in ispec["ISA"]:
-            self.isa += 'c'
+        self.isa += 'c'
         if "F" in ispec["ISA"]:
             self.isa += 'f'
         if "D" in ispec["ISA"]:
@@ -98,9 +95,7 @@ class spike(pluginTemplate):
             execute += self.objdump_cmd.format(elf, self.xlen, 'ref.disass')
             sig_file = os.path.join(test_dir, self.name[:-1] + ".signature")
 
-            #TODO: You will need to add any other arguments to your DUT
-            #      executable if any in the quotes below
-            execute += self.ref_exe + ''
+            execute += self.ref_exe + ' --isa={0} +signature={1} +signature-granularity=4 {2}'.format(self.isa, sig_file, elf)
 
             #TODO: The following is useful only if your reference model can
             #      support coverage extraction from riscv-isac. Else leave it

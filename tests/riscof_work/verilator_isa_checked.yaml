@@ -5,16 +5,40 @@ hart0:
     User_Spec_Version: '2.3'
     supported_xlen:
       - 32
-    Privilege_Spec_Version: '1.10'
-    hw_data_misaligned_support: false
-    pmp_granularity: 0
-    custom_exceptions:
-    custom_interrupts:
-    pte_ad_hw_update: false
-    mtval_update: 0b11111111
     misa:
+        reset-val: 0x40000100
         rv32:
             accessible: true
+            mxl:
+                implemented: true
+                type:
+                    warl:
+                        dependency_fields: []
+                        legal:
+                          - mxl[1:0] in [0x1]
+                        wr_illegal:
+                          - Unchanged
+                description: Encodes the native base integer ISA width.
+                shadow:
+                shadow_type: rw
+                msb: 31
+                lsb: 30
+            extensions:
+                implemented: true
+                type:
+                    warl:
+                        dependency_fields: []
+                        legal:
+                          - extensions[25:0] bitmask [0x00000100, 0x0000000]
+                        wr_illegal:
+                          - Unchanged
+
+                description: Encodes the presence of the standard extensions, with
+                    a single bit per letter of the alphabet.
+                shadow:
+                shadow_type: rw
+                msb: 25
+                lsb: 0
             fields:
               - extensions
               - mxl
@@ -22,43 +46,19 @@ hart0:
                   -
                       - 26
                       - 29
-            mxl:
-                implemented: true
-                description: Encodes the native base integer ISA width.
-                shadow:
-                shadow_type: rw
-                msb: 31
-                lsb: 30
-                type:
-                    warl:
-                        dependency_fields: []
-                        legal:
-                          - mxl[1:0] in [0x1]
-                        wr_illegal:
-                          - unchanged
-            extensions:
-                implemented: true
-                description: Encodes the presence of the standard extensions, with
-                    a single bit per letter of the alphabet.
-                shadow:
-                shadow_type: rw
-                msb: 25
-                lsb: 0
-                type:
-                    warl:
-                        dependency_fields: []
-                        legal:
-                          - extensions[25:0] bitmask [0x100, 0x00000000]
-                        wr_illegal:
-                          - unchanged
-
-        rv64:
-            accessible: false
         description: misa is a read-write register reporting the ISA supported by
             the hart.
         address: 769
         priv_mode: M
-        reset-val: 1073742080
+        rv64:
+            accessible: false
+    Privilege_Spec_Version: '1.10'
+    hw_data_misaligned_support: false
+    pmp_granularity: 0
+    custom_exceptions:
+    custom_interrupts:
+    pte_ad_hw_update: false
+    mtval_update: 0b11111111
     mstatus:
         rv32:
             accessible: true
@@ -4127,4 +4127,3 @@ hart0:
         address: 0x744
         priv_mode: M
         reset-val: 0
-

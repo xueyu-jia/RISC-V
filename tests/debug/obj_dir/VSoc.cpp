@@ -12,10 +12,6 @@ VSoc::VSoc(VerilatedContext* _vcontextp__, const char* _vcname__)
     , vlSymsp{new VSoc__Syms(contextp(), _vcname__, this)}
     , clk{vlSymsp->TOP.clk}
     , rst{vlSymsp->TOP.rst}
-    , sim_in_wen{vlSymsp->TOP.sim_in_wen}
-    , sim_in_addr{vlSymsp->TOP.sim_in_addr}
-    , sim_out_rdata{vlSymsp->TOP.sim_out_rdata}
-    , sim_in_wdata{vlSymsp->TOP.sim_in_wdata}
     , rootp{&(vlSymsp->TOP)}
 {
     // Register model with the context
