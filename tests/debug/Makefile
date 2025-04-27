@@ -4,9 +4,18 @@ compile:
 generate: 
 	rm -rf obj_dir/
 	verilator --cc ../../src/*.v ../verilator_main.cc -I../../src --exe -top-module Soc --trace --build
+
 run:	
 	python symparse_run.py --dut_exe=./obj_dir/VSoc --elf=test.elf --signature=test.signature --xlen=32 --vcd=./test.vcd
+	
 debug:
-	gtkwave test.vcd
+	gtkwave test.vcd -S gtkconfig.gtkw
+
 objdump:
 	riscv32-unknown-elf-objdump -D test.elf
+
+COPYTEST_NAME = 
+copytest:
+	cp /home/bob/RISC_V/RISC-V/tests/riscof_work/rv32i_m/I/src/${COPYTEST_NAME}-01.S/dut/my.elf test.elf
+test: generate copytest run debug
+.PHONY:all compile generate run debug objdump copytest test

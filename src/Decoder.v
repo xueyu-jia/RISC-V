@@ -50,8 +50,8 @@ module Decoder(
     wire is_ori=((is_i)&&(fuc3==`ORI));
     wire is_andi=((is_i)&&(fuc3==`ANDI));
     wire is_slli=((is_i)&&(fuc3==`SLLI));
-    wire is_srli=((is_i)&&(fuc3==`SRLI));
-    wire is_srai=((is_i)&&(fuc3==`SRAI));
+    wire is_srli=((is_i)&&(fuc3==`SRLI)&&(!in_ins[30]));
+    wire is_srai=((is_i)&&(fuc3==`SRAI)&&(in_ins[30]));
 
     wire is_add=((is_r)&&(fuc3==`ADD)&&(fuc7==`ADD_FUNCT7));
     wire is_sub=((is_r)&&(fuc3==`SUB)&&(fuc7==`SUB_FUNCT7));
@@ -90,31 +90,31 @@ module Decoder(
 
 
 
-    assign out_rs1_id=({5{(is_i||is_s||is_b||is_r||is_jalr)}}&in_ins[19:15])|5'b0;
+    assign out_rs1_id=({5{(is_i||is_s||is_b||is_r||is_jalr||is_l)}}&in_ins[19:15])|5'b0;
     assign out_rs2_id=({5{(is_s||is_b||is_r)}}&in_ins[24:20])|5'b0;
-    assign out_rd_id=({5{(is_i||is_u||is_j)}}&in_ins[11:7])|5'b0;
-    assign out_rd_we=(is_i||is_u||is_j||is_l)?`VALID_RegW:`INVALID_RegW;
+    assign out_rd_id=({5{(is_i||is_u||is_j||is_r||is_l)}}&in_ins[11:7])|5'b0;
+    assign out_rd_we=(is_i||is_u||is_j||is_l||is_r)?`VALID_RegW:`INVALID_RegW;
 
     assign out_src1=in_src1;
     assign out_src2=in_src2;
 
 
-    assign out_imm=({32{is_i||is_jalr}}&{{21{in_ins[31]}},in_ins[30:20]})|
+    assign out_imm=({32{is_i||is_l}}&{{21{in_ins[31]}},in_ins[30:20]})|
                    ({32{is_u}}&(({32{is_auipc}}&in_pc)+({in_ins[31],in_ins[30:12],12'b0})))|
                    ({32{is_s}}&{{21{in_ins[31]}},in_ins[30:25],in_ins[11:7]})|
-                   ({32{is_jal}}&(in_pc+4))|
+                   ({32{is_j}}&(in_pc+4))|
                    (32'b0);
 
     //用到加法器的指令将out_alu_op[ADD_OP]置1
-    assign out_alu_op[`ADD_OP]=is_addi||is_add||is_lb||is_lh||is_lw||is_lbu||is_lhu||is_lui||is_auipc||is_j;
+    assign out_alu_op[`ADD_OP]=is_addi||is_add||is_lb||is_lh||is_lw||is_lbu||is_lhu||is_lui||is_auipc;
     //用到减法的指令将out_alu_op[SUB_OP]置1
     assign out_alu_op[`SUB_OP]=is_sub;
     //用到左移指令将out_alu_op[SL_OP]置1
     assign out_alu_op[`SL_OP]=is_sll||is_slli;
     //用到逻辑右移指令将out_alu_op[SR_OP]置1
-    assign out_alu_op[`SR_OP]=is_srl||is_srli;
+    assign out_alu_op[`SRL_OP]=is_srl||is_srli;
     //用到算术右移指令将out_alu_op[SA_OP]置1
-    assign out_alu_op[`SA_OP]=is_sra||is_srai;
+    assign out_alu_op[`SRA_OP]=is_sra||is_srai;
     //用到逻辑与运算的指令将out_alu_op[AND_OP]置1
     assign out_alu_op[`AND_OP]=is_and||is_andi;
     //用到逻辑或运算的指令将out_alu_op[OR_OP]置1
@@ -125,6 +125,8 @@ module Decoder(
     assign out_alu_op[`SLT_OP]=is_slt||is_slti;
     //用到无符号小于运算将out_alu_op[SLT_OP]置1
     assign out_alu_op[`SLTU_OP]=is_sltu||is_sltiu;
+    //当跳转保存下一条指令地址时将out_alu_op[J_OP]置1
+    assign out_alu_op[`J_OP]=is_j;
 
     //通过独热编码判断写入存储器中的数据长度
     assign out_mem_we=({4{is_sb}}&`SB_MASK)|
@@ -142,14 +144,14 @@ module Decoder(
     
     //JALR使用的是I型表示
     assign out_jump_addr=({32{is_jal}}&(in_pc+{{12{in_ins[31]}},in_ins[19:12],in_ins[20],in_ins[30:21],1'b0}))|
-                         ({32{is_jalr}}& (in_src1+out_imm))|
+                         ({{30{is_jalr}},2'b00}& (in_src1+{{21{in_ins[31]}},in_ins[30:20]}))|
                          ({32{is_b}}&(in_pc+{{20{in_ins[31]}},in_ins[7],in_ins[30:25],in_ins[11:8],1'b0}));
 
     assign out_jump_en=is_jal||is_jalr||
                        (is_beq && (in_src1==in_src2))||(is_bne && (in_src1!=in_src2))||
                        (is_blt && ($signed(in_src1)<$signed(in_src2)))||
-                       (is_bge && ($signed(in_src1)>$signed(in_src2)))||
+                       (is_bge && ($signed(in_src1)>=$signed(in_src2)))||
                        (is_bltu && (in_src1<in_src2))||
-                       (is_bgeu && (in_src1>in_src2));
+                       (is_bgeu && (in_src1>=in_src2));
 
 endmodule 

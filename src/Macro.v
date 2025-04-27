@@ -97,19 +97,19 @@
 
 
 
-`define ALU_OP_NUM 10
+`define ALU_OP_NUM 11
 
 `define ADD_OP 0
 `define SUB_OP 1
 `define SL_OP 2
-`define SR_OP 3
-`define SA_OP 4
+`define SRL_OP 3
+`define SRA_OP 4
 `define AND_OP 5
 `define OR_OP 6
 `define XOR_OP 7
 `define SLT_OP 8
 `define SLTU_OP 9
-
+`define J_OP   10
 
 `define SB_MASK 4'b0001
 `define SH_MASK 4'b0011

@@ -13,7 +13,6 @@ void VSoc___024root___eval_act(VSoc___024root* vlSelf) {
 
 void VSoc___024root___nba_sequent__TOP__0(VSoc___024root* vlSelf);
 void VSoc___024root___nba_sequent__TOP__1(VSoc___024root* vlSelf);
-void VSoc___024root___nba_sequent__TOP__2(VSoc___024root* vlSelf);
 void VSoc___024root___nba_comb__TOP__0(VSoc___024root* vlSelf);
 
 void VSoc___024root___eval_nba(VSoc___024root* vlSelf) {
@@ -27,11 +26,6 @@ void VSoc___024root___eval_nba(VSoc___024root* vlSelf) {
     if ((3ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
         VSoc___024root___nba_sequent__TOP__1(vlSelf);
         vlSelfRef.__Vm_traceActivity[1U] = 1U;
-    }
-    if ((1ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
-        VSoc___024root___nba_sequent__TOP__2(vlSelf);
-    }
-    if ((3ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
         VSoc___024root___nba_comb__TOP__0(vlSelf);
     }
 }
@@ -40,49 +34,82 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__0(VSoc___024root* vlSelf) 
     VL_DEBUG_IF(VL_DBG_MSGF("+    VSoc___024root___nba_sequent__TOP__0\n"); );
     VSoc__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     auto& vlSelfRef = std::ref(*vlSelf).get();
+    // Init
+    CData/*7:0*/ __VdlyVal__Soc__DOT__Rv32_datamem__DOT__mem__v0;
+    __VdlyVal__Soc__DOT__Rv32_datamem__DOT__mem__v0 = 0;
+    IData/*21:0*/ __VdlyDim0__Soc__DOT__Rv32_datamem__DOT__mem__v0;
+    __VdlyDim0__Soc__DOT__Rv32_datamem__DOT__mem__v0 = 0;
+    CData/*0:0*/ __VdlySet__Soc__DOT__Rv32_datamem__DOT__mem__v0;
+    __VdlySet__Soc__DOT__Rv32_datamem__DOT__mem__v0 = 0;
+    CData/*7:0*/ __VdlyVal__Soc__DOT__Rv32_datamem__DOT__mem__v1;
+    __VdlyVal__Soc__DOT__Rv32_datamem__DOT__mem__v1 = 0;
+    IData/*21:0*/ __VdlyDim0__Soc__DOT__Rv32_datamem__DOT__mem__v1;
+    __VdlyDim0__Soc__DOT__Rv32_datamem__DOT__mem__v1 = 0;
+    CData/*0:0*/ __VdlySet__Soc__DOT__Rv32_datamem__DOT__mem__v1;
+    __VdlySet__Soc__DOT__Rv32_datamem__DOT__mem__v1 = 0;
+    CData/*7:0*/ __VdlyVal__Soc__DOT__Rv32_datamem__DOT__mem__v2;
+    __VdlyVal__Soc__DOT__Rv32_datamem__DOT__mem__v2 = 0;
+    IData/*21:0*/ __VdlyDim0__Soc__DOT__Rv32_datamem__DOT__mem__v2;
+    __VdlyDim0__Soc__DOT__Rv32_datamem__DOT__mem__v2 = 0;
+    CData/*0:0*/ __VdlySet__Soc__DOT__Rv32_datamem__DOT__mem__v2;
+    __VdlySet__Soc__DOT__Rv32_datamem__DOT__mem__v2 = 0;
+    CData/*7:0*/ __VdlyVal__Soc__DOT__Rv32_datamem__DOT__mem__v3;
+    __VdlyVal__Soc__DOT__Rv32_datamem__DOT__mem__v3 = 0;
+    IData/*21:0*/ __VdlyDim0__Soc__DOT__Rv32_datamem__DOT__mem__v3;
+    __VdlyDim0__Soc__DOT__Rv32_datamem__DOT__mem__v3 = 0;
+    CData/*0:0*/ __VdlySet__Soc__DOT__Rv32_datamem__DOT__mem__v3;
+    __VdlySet__Soc__DOT__Rv32_datamem__DOT__mem__v3 = 0;
     // Body
-    vlSelfRef.__VdlySet__Soc__DOT__Rv32_datamem__DOT__mem__v0 = 0U;
-    vlSelfRef.__VdlySet__Soc__DOT__Rv32_datamem__DOT__mem__v1 = 0U;
-    vlSelfRef.__VdlySet__Soc__DOT__Rv32_datamem__DOT__mem__v2 = 0U;
-    vlSelfRef.__VdlySet__Soc__DOT__Rv32_datamem__DOT__mem__v3 = 0U;
+    __VdlySet__Soc__DOT__Rv32_datamem__DOT__mem__v0 = 0U;
+    __VdlySet__Soc__DOT__Rv32_datamem__DOT__mem__v1 = 0U;
+    __VdlySet__Soc__DOT__Rv32_datamem__DOT__mem__v2 = 0U;
+    __VdlySet__Soc__DOT__Rv32_datamem__DOT__mem__v3 = 0U;
     if ((1U & (IData)(vlSelfRef.Soc__DOT__rv32__DOT__Decoder_out_mem_we))) {
-        vlSelfRef.__VdlyVal__Soc__DOT__Rv32_datamem__DOT__mem__v0 
+        __VdlyVal__Soc__DOT__Rv32_datamem__DOT__mem__v0 
             = (0xffU & vlSelfRef.Soc__DOT__rv32__DOT__Alu_out_data);
-        vlSelfRef.__VdlyDim0__Soc__DOT__Rv32_datamem__DOT__mem__v0 
-            = (0xfffffU & ((vlSelfRef.Soc__DOT__rv32__DOT__Alu_out_mem_addr 
-                            - (IData)(0x80400000U)) 
-                           >> 2U));
-        vlSelfRef.__VdlySet__Soc__DOT__Rv32_datamem__DOT__mem__v0 = 1U;
+        __VdlyDim0__Soc__DOT__Rv32_datamem__DOT__mem__v0 
+            = (0x3fffffU & vlSelfRef.Soc__DOT__rv32__DOT__Alu_out_mem_addr);
+        __VdlySet__Soc__DOT__Rv32_datamem__DOT__mem__v0 = 1U;
     }
     if ((2U & (IData)(vlSelfRef.Soc__DOT__rv32__DOT__Decoder_out_mem_we))) {
-        vlSelfRef.__VdlyVal__Soc__DOT__Rv32_datamem__DOT__mem__v1 
+        __VdlyVal__Soc__DOT__Rv32_datamem__DOT__mem__v1 
             = (0xffU & (vlSelfRef.Soc__DOT__rv32__DOT__Alu_out_data 
                         >> 8U));
-        vlSelfRef.__VdlyDim0__Soc__DOT__Rv32_datamem__DOT__mem__v1 
-            = (0xfffffU & ((vlSelfRef.Soc__DOT__rv32__DOT__Alu_out_mem_addr 
-                            - (IData)(0x80400000U)) 
-                           >> 2U));
-        vlSelfRef.__VdlySet__Soc__DOT__Rv32_datamem__DOT__mem__v1 = 1U;
+        __VdlyDim0__Soc__DOT__Rv32_datamem__DOT__mem__v1 
+            = (0x3fffffU & ((IData)(1U) + vlSelfRef.Soc__DOT__rv32__DOT__Alu_out_mem_addr));
+        __VdlySet__Soc__DOT__Rv32_datamem__DOT__mem__v1 = 1U;
     }
     if ((4U & (IData)(vlSelfRef.Soc__DOT__rv32__DOT__Decoder_out_mem_we))) {
-        vlSelfRef.__VdlyVal__Soc__DOT__Rv32_datamem__DOT__mem__v2 
+        __VdlyVal__Soc__DOT__Rv32_datamem__DOT__mem__v2 
             = (0xffU & (vlSelfRef.Soc__DOT__rv32__DOT__Alu_out_data 
                         >> 0x10U));
-        vlSelfRef.__VdlyDim0__Soc__DOT__Rv32_datamem__DOT__mem__v2 
-            = (0xfffffU & ((vlSelfRef.Soc__DOT__rv32__DOT__Alu_out_mem_addr 
-                            - (IData)(0x80400000U)) 
-                           >> 2U));
-        vlSelfRef.__VdlySet__Soc__DOT__Rv32_datamem__DOT__mem__v2 = 1U;
+        __VdlyDim0__Soc__DOT__Rv32_datamem__DOT__mem__v2 
+            = (0x3fffffU & ((IData)(2U) + vlSelfRef.Soc__DOT__rv32__DOT__Alu_out_mem_addr));
+        __VdlySet__Soc__DOT__Rv32_datamem__DOT__mem__v2 = 1U;
     }
     if ((8U & (IData)(vlSelfRef.Soc__DOT__rv32__DOT__Decoder_out_mem_we))) {
-        vlSelfRef.__VdlyVal__Soc__DOT__Rv32_datamem__DOT__mem__v3 
+        __VdlyVal__Soc__DOT__Rv32_datamem__DOT__mem__v3 
             = (vlSelfRef.Soc__DOT__rv32__DOT__Alu_out_data 
                >> 0x18U);
-        vlSelfRef.__VdlyDim0__Soc__DOT__Rv32_datamem__DOT__mem__v3 
-            = (0xfffffU & ((vlSelfRef.Soc__DOT__rv32__DOT__Alu_out_mem_addr 
-                            - (IData)(0x80400000U)) 
-                           >> 2U));
-        vlSelfRef.__VdlySet__Soc__DOT__Rv32_datamem__DOT__mem__v3 = 1U;
+        __VdlyDim0__Soc__DOT__Rv32_datamem__DOT__mem__v3 
+            = (0x3fffffU & ((IData)(3U) + vlSelfRef.Soc__DOT__rv32__DOT__Alu_out_mem_addr));
+        __VdlySet__Soc__DOT__Rv32_datamem__DOT__mem__v3 = 1U;
+    }
+    if (__VdlySet__Soc__DOT__Rv32_datamem__DOT__mem__v0) {
+        vlSelfRef.Soc__DOT__Rv32_datamem__DOT__mem[__VdlyDim0__Soc__DOT__Rv32_datamem__DOT__mem__v0] 
+            = __VdlyVal__Soc__DOT__Rv32_datamem__DOT__mem__v0;
+    }
+    if (__VdlySet__Soc__DOT__Rv32_datamem__DOT__mem__v1) {
+        vlSelfRef.Soc__DOT__Rv32_datamem__DOT__mem[__VdlyDim0__Soc__DOT__Rv32_datamem__DOT__mem__v1] 
+            = __VdlyVal__Soc__DOT__Rv32_datamem__DOT__mem__v1;
+    }
+    if (__VdlySet__Soc__DOT__Rv32_datamem__DOT__mem__v2) {
+        vlSelfRef.Soc__DOT__Rv32_datamem__DOT__mem[__VdlyDim0__Soc__DOT__Rv32_datamem__DOT__mem__v2] 
+            = __VdlyVal__Soc__DOT__Rv32_datamem__DOT__mem__v2;
+    }
+    if (__VdlySet__Soc__DOT__Rv32_datamem__DOT__mem__v3) {
+        vlSelfRef.Soc__DOT__Rv32_datamem__DOT__mem[__VdlyDim0__Soc__DOT__Rv32_datamem__DOT__mem__v3] 
+            = __VdlyVal__Soc__DOT__Rv32_datamem__DOT__mem__v3;
     }
 }
 
@@ -91,14 +118,10 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__1(VSoc___024root* vlSelf) 
     VSoc__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     auto& vlSelfRef = std::ref(*vlSelf).get();
     // Init
-    CData/*4:0*/ Soc__DOT__rv32__DOT__RV32I_Decoder__DOT____VdfgRegularize_hb9908eda_0_14;
-    Soc__DOT__rv32__DOT__RV32I_Decoder__DOT____VdfgRegularize_hb9908eda_0_14 = 0;
-    CData/*0:0*/ Soc__DOT__rv32__DOT__RV32I_Decoder__DOT____VdfgRegularize_hb9908eda_0_15;
-    Soc__DOT__rv32__DOT__RV32I_Decoder__DOT____VdfgRegularize_hb9908eda_0_15 = 0;
-    CData/*5:0*/ Soc__DOT__rv32__DOT__RV32I_Decoder__DOT____VdfgRegularize_hb9908eda_0_17;
-    Soc__DOT__rv32__DOT__RV32I_Decoder__DOT____VdfgRegularize_hb9908eda_0_17 = 0;
-    IData/*31:0*/ Soc__DOT__rv32__DOT__RV32I_Alu__DOT____VdfgRegularize_h81d224ff_0_1;
-    Soc__DOT__rv32__DOT__RV32I_Alu__DOT____VdfgRegularize_h81d224ff_0_1 = 0;
+    IData/*31:0*/ Soc__DOT__rv32__DOT__RV32I_Decoder__DOT____VdfgRegularize_hb9908eda_0_19;
+    Soc__DOT__rv32__DOT__RV32I_Decoder__DOT____VdfgRegularize_hb9908eda_0_19 = 0;
+    CData/*0:0*/ Soc__DOT__rv32__DOT__RV32I_Decoder__DOT____VdfgRegularize_hb9908eda_0_22;
+    Soc__DOT__rv32__DOT__RV32I_Decoder__DOT____VdfgRegularize_hb9908eda_0_22 = 0;
     IData/*31:0*/ __Vdly__Soc__DOT__rv32__DOT__RV32I_Ifu__DOT__n_pc;
     __Vdly__Soc__DOT__rv32__DOT__RV32I_Ifu__DOT__n_pc = 0;
     CData/*0:0*/ __VdlySet__Soc__DOT__rv32__DOT__RV32I_Regfile__DOT__general_reg__v0;
@@ -110,51 +133,44 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__1(VSoc___024root* vlSelf) 
     CData/*0:0*/ __VdlySet__Soc__DOT__rv32__DOT__RV32I_Regfile__DOT__general_reg__v32;
     __VdlySet__Soc__DOT__rv32__DOT__RV32I_Regfile__DOT__general_reg__v32 = 0;
     // Body
-    __VdlySet__Soc__DOT__rv32__DOT__RV32I_Regfile__DOT__general_reg__v0 = 0U;
-    __VdlySet__Soc__DOT__rv32__DOT__RV32I_Regfile__DOT__general_reg__v32 = 0U;
     __Vdly__Soc__DOT__rv32__DOT__RV32I_Ifu__DOT__n_pc 
         = vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Ifu__DOT__n_pc;
+    __VdlySet__Soc__DOT__rv32__DOT__RV32I_Regfile__DOT__general_reg__v0 = 0U;
+    __VdlySet__Soc__DOT__rv32__DOT__RV32I_Regfile__DOT__general_reg__v32 = 0U;
     if (vlSelfRef.rst) {
         vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Regfile__DOT__i = 0x20U;
         __VdlySet__Soc__DOT__rv32__DOT__RV32I_Regfile__DOT__general_reg__v0 = 1U;
         vlSelfRef.Soc__DOT__rv32__DOT__Ifu_out_pc = 0x80000000U;
         __Vdly__Soc__DOT__rv32__DOT__RV32I_Ifu__DOT__n_pc = 0x80000000U;
     } else {
-        if ((((IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT____VdfgRegularize_hb9908eda_0_19) 
-              | (3U == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__opcode))) 
+        if ((((IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT____VdfgRegularize_hb9908eda_0_21) 
+              | ((3U == (0x7fU & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins)) 
+                 | (0x33U == (0x7fU & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins)))) 
              & (0U != (IData)(vlSelfRef.Soc__DOT__rv32__DOT__Regfile_in_rd_id)))) {
             __VdlyVal__Soc__DOT__rv32__DOT__RV32I_Regfile__DOT__general_reg__v32 
                 = (((- (IData)((1U & (IData)(vlSelfRef.Soc__DOT__rv32__DOT__Decoder_out_mem_re)))) 
-                    & (((- (IData)((1U & (vlSelfRef.Soc__DOT__Rv32_datamem__DOT__mem
-                                          [(0xfffffU 
-                                            & ((vlSelfRef.Soc__DOT__rv32__DOT__Alu_out_mem_addr 
-                                                - (IData)(0x80400000U)) 
-                                               >> 2U))] 
+                    & (((- (IData)((1U & (vlSelfRef.Soc__DOT__rv32__DOT__Memu_in_mem_data 
                                           >> 7U)))) 
-                        << 8U) | (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Memu__DOT____VdfgRegularize_hd9a39314_0_0))) 
+                        << 8U) | (0xffU & vlSelfRef.Soc__DOT__rv32__DOT__Memu_in_mem_data))) 
                    | (((- (IData)((1U & ((IData)(vlSelfRef.Soc__DOT__rv32__DOT__Decoder_out_mem_re) 
                                          >> 1U)))) 
-                       & (((- (IData)((1U & (vlSelfRef.Soc__DOT__Rv32_datamem__DOT__mem
-                                             [(0xfffffU 
-                                               & ((vlSelfRef.Soc__DOT__rv32__DOT__Alu_out_mem_addr 
-                                                   - (IData)(0x80400000U)) 
-                                                  >> 2U))] 
+                       & (((- (IData)((1U & (vlSelfRef.Soc__DOT__rv32__DOT__Memu_in_mem_data 
                                              >> 0xfU)))) 
-                           << 0x10U) | (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Memu__DOT____VdfgRegularize_hd9a39314_0_1))) 
+                           << 0x10U) | (0xffffU & vlSelfRef.Soc__DOT__rv32__DOT__Memu_in_mem_data))) 
                       | (((- (IData)((1U & ((IData)(vlSelfRef.Soc__DOT__rv32__DOT__Decoder_out_mem_re) 
                                             >> 2U)))) 
-                          & vlSelfRef.Soc__DOT__Rv32_datamem__DOT__mem
-                          [(0xfffffU & ((vlSelfRef.Soc__DOT__rv32__DOT__Alu_out_mem_addr 
-                                         - (IData)(0x80400000U)) 
-                                        >> 2U))]) | 
-                         (((- (IData)((1U & ((IData)(vlSelfRef.Soc__DOT__rv32__DOT__Decoder_out_mem_re) 
-                                             >> 3U)))) 
-                           & (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Memu__DOT____VdfgRegularize_hd9a39314_0_0)) 
-                          | (((- (IData)((1U & ((IData)(vlSelfRef.Soc__DOT__rv32__DOT__Decoder_out_mem_re) 
-                                                >> 4U)))) 
-                              & (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Memu__DOT____VdfgRegularize_hd9a39314_0_1)) 
-                             | ((- (IData)((0U == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__Decoder_out_mem_re)))) 
-                                & vlSelfRef.Soc__DOT__rv32__DOT__Alu_out_data))))));
+                          & vlSelfRef.Soc__DOT__rv32__DOT__Memu_in_mem_data) 
+                         | ((0xffU & ((- (IData)((1U 
+                                                  & ((IData)(vlSelfRef.Soc__DOT__rv32__DOT__Decoder_out_mem_re) 
+                                                     >> 3U)))) 
+                                      & vlSelfRef.Soc__DOT__rv32__DOT__Memu_in_mem_data)) 
+                            | ((0xffffU & ((- (IData)(
+                                                      (1U 
+                                                       & ((IData)(vlSelfRef.Soc__DOT__rv32__DOT__Decoder_out_mem_re) 
+                                                          >> 4U)))) 
+                                           & vlSelfRef.Soc__DOT__rv32__DOT__Memu_in_mem_data)) 
+                               | ((- (IData)((0U == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__Decoder_out_mem_re)))) 
+                                  & vlSelfRef.Soc__DOT__rv32__DOT__Alu_out_data))))));
             __VdlyDim0__Soc__DOT__rv32__DOT__RV32I_Regfile__DOT__general_reg__v32 
                 = vlSelfRef.Soc__DOT__rv32__DOT__Regfile_in_rd_id;
             __VdlySet__Soc__DOT__rv32__DOT__RV32I_Regfile__DOT__general_reg__v32 = 1U;
@@ -164,15 +180,101 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__1(VSoc___024root* vlSelf) 
                 = vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_jmp_addr;
             __Vdly__Soc__DOT__rv32__DOT__RV32I_Ifu__DOT__n_pc 
                 = (vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_jmp_addr 
-                   + ((2U & (- (IData)((IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Ifu__DOT__ne_is_c)))) 
-                      | (4U & (- (IData)((1U & (~ (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Ifu__DOT__ne_is_c))))))));
+                   + ((2U & (- (IData)((3U != (3U & 
+                                               (vlSelfRef.Soc__DOT__Rv32_codemem__DOT__mem
+                                                [(0x3fffffU 
+                                                  & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_ne_out_pc)] 
+                                                | (VL_SHIFTL_III(2,32,32, 
+                                                                 vlSelfRef.Soc__DOT__Rv32_codemem__DOT__mem
+                                                                 [
+                                                                 (0x3fffffU 
+                                                                  & ((IData)(1U) 
+                                                                     + vlSelfRef.Soc__DOT__rv32__DOT__Ifu_ne_out_pc))], 8U) 
+                                                   | (VL_SHIFTL_III(2,32,32, 
+                                                                    vlSelfRef.Soc__DOT__Rv32_codemem__DOT__mem
+                                                                    [
+                                                                    (0x3fffffU 
+                                                                     & ((IData)(2U) 
+                                                                        + vlSelfRef.Soc__DOT__rv32__DOT__Ifu_ne_out_pc))], 0x10U) 
+                                                      | VL_SHIFTL_III(2,32,32, 
+                                                                      vlSelfRef.Soc__DOT__Rv32_codemem__DOT__mem
+                                                                      [
+                                                                      (0x3fffffU 
+                                                                       & ((IData)(3U) 
+                                                                          + vlSelfRef.Soc__DOT__rv32__DOT__Ifu_ne_out_pc))], 0x18U))))))))) 
+                      | (4U & (- (IData)((3U == (3U 
+                                                 & (vlSelfRef.Soc__DOT__Rv32_codemem__DOT__mem
+                                                    [
+                                                    (0x3fffffU 
+                                                     & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_ne_out_pc)] 
+                                                    | (VL_SHIFTL_III(2,32,32, 
+                                                                     vlSelfRef.Soc__DOT__Rv32_codemem__DOT__mem
+                                                                     [
+                                                                     (0x3fffffU 
+                                                                      & ((IData)(1U) 
+                                                                         + vlSelfRef.Soc__DOT__rv32__DOT__Ifu_ne_out_pc))], 8U) 
+                                                       | (VL_SHIFTL_III(2,32,32, 
+                                                                        vlSelfRef.Soc__DOT__Rv32_codemem__DOT__mem
+                                                                        [
+                                                                        (0x3fffffU 
+                                                                         & ((IData)(2U) 
+                                                                            + vlSelfRef.Soc__DOT__rv32__DOT__Ifu_ne_out_pc))], 0x10U) 
+                                                          | VL_SHIFTL_III(2,32,32, 
+                                                                          vlSelfRef.Soc__DOT__Rv32_codemem__DOT__mem
+                                                                          [
+                                                                          (0x3fffffU 
+                                                                           & ((IData)(3U) 
+                                                                              + vlSelfRef.Soc__DOT__rv32__DOT__Ifu_ne_out_pc))], 0x18U)))))))))));
         } else {
             vlSelfRef.Soc__DOT__rv32__DOT__Ifu_out_pc 
                 = vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Ifu__DOT__n_pc;
             __Vdly__Soc__DOT__rv32__DOT__RV32I_Ifu__DOT__n_pc 
                 = (vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Ifu__DOT__n_pc 
-                   + ((2U & (- (IData)((IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Ifu__DOT__ne_is_c)))) 
-                      | (4U & (- (IData)((1U & (~ (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Ifu__DOT__ne_is_c))))))));
+                   + ((2U & (- (IData)((3U != (3U & 
+                                               (vlSelfRef.Soc__DOT__Rv32_codemem__DOT__mem
+                                                [(0x3fffffU 
+                                                  & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_ne_out_pc)] 
+                                                | (VL_SHIFTL_III(2,32,32, 
+                                                                 vlSelfRef.Soc__DOT__Rv32_codemem__DOT__mem
+                                                                 [
+                                                                 (0x3fffffU 
+                                                                  & ((IData)(1U) 
+                                                                     + vlSelfRef.Soc__DOT__rv32__DOT__Ifu_ne_out_pc))], 8U) 
+                                                   | (VL_SHIFTL_III(2,32,32, 
+                                                                    vlSelfRef.Soc__DOT__Rv32_codemem__DOT__mem
+                                                                    [
+                                                                    (0x3fffffU 
+                                                                     & ((IData)(2U) 
+                                                                        + vlSelfRef.Soc__DOT__rv32__DOT__Ifu_ne_out_pc))], 0x10U) 
+                                                      | VL_SHIFTL_III(2,32,32, 
+                                                                      vlSelfRef.Soc__DOT__Rv32_codemem__DOT__mem
+                                                                      [
+                                                                      (0x3fffffU 
+                                                                       & ((IData)(3U) 
+                                                                          + vlSelfRef.Soc__DOT__rv32__DOT__Ifu_ne_out_pc))], 0x18U))))))))) 
+                      | (4U & (- (IData)((3U == (3U 
+                                                 & (vlSelfRef.Soc__DOT__Rv32_codemem__DOT__mem
+                                                    [
+                                                    (0x3fffffU 
+                                                     & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_ne_out_pc)] 
+                                                    | (VL_SHIFTL_III(2,32,32, 
+                                                                     vlSelfRef.Soc__DOT__Rv32_codemem__DOT__mem
+                                                                     [
+                                                                     (0x3fffffU 
+                                                                      & ((IData)(1U) 
+                                                                         + vlSelfRef.Soc__DOT__rv32__DOT__Ifu_ne_out_pc))], 8U) 
+                                                       | (VL_SHIFTL_III(2,32,32, 
+                                                                        vlSelfRef.Soc__DOT__Rv32_codemem__DOT__mem
+                                                                        [
+                                                                        (0x3fffffU 
+                                                                         & ((IData)(2U) 
+                                                                            + vlSelfRef.Soc__DOT__rv32__DOT__Ifu_ne_out_pc))], 0x10U) 
+                                                          | VL_SHIFTL_III(2,32,32, 
+                                                                          vlSelfRef.Soc__DOT__Rv32_codemem__DOT__mem
+                                                                          [
+                                                                          (0x3fffffU 
+                                                                           & ((IData)(3U) 
+                                                                              + vlSelfRef.Soc__DOT__rv32__DOT__Ifu_ne_out_pc))], 0x18U)))))))))));
         }
     }
     vlSelfRef.Soc__DOT__rv32__DOT__Ifu_out_mem_valid 
@@ -217,245 +319,210 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__1(VSoc___024root* vlSelf) 
     }
     vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Ifu__DOT__n_pc 
         = __Vdly__Soc__DOT__rv32__DOT__RV32I_Ifu__DOT__n_pc;
-    vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__fuc7 
-        = (vlSelfRef.Soc__DOT__Rv32_codemem__DOT__mem
-           [(0xfffffU & ((vlSelfRef.Soc__DOT__rv32__DOT__Ifu_out_pc 
-                          - (IData)(0x80000000U)) >> 2U))] 
-           >> 0x19U);
-    Soc__DOT__rv32__DOT__RV32I_Decoder__DOT____VdfgRegularize_hb9908eda_0_14 
-        = (0x1fU & (vlSelfRef.Soc__DOT__Rv32_codemem__DOT__mem
-                    [(0xfffffU & ((vlSelfRef.Soc__DOT__rv32__DOT__Ifu_out_pc 
-                                   - (IData)(0x80000000U)) 
-                                  >> 2U))] >> 7U));
-    Soc__DOT__rv32__DOT__RV32I_Decoder__DOT____VdfgRegularize_hb9908eda_0_17 
-        = (0x3fU & (vlSelfRef.Soc__DOT__Rv32_codemem__DOT__mem
-                    [(0xfffffU & ((vlSelfRef.Soc__DOT__rv32__DOT__Ifu_out_pc 
-                                   - (IData)(0x80000000U)) 
-                                  >> 2U))] >> 0x19U));
-    Soc__DOT__rv32__DOT__RV32I_Decoder__DOT____VdfgRegularize_hb9908eda_0_15 
-        = (vlSelfRef.Soc__DOT__Rv32_codemem__DOT__mem
-           [(0xfffffU & ((vlSelfRef.Soc__DOT__rv32__DOT__Ifu_out_pc 
-                          - (IData)(0x80000000U)) >> 2U))] 
-           >> 0x1fU);
-    vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__fuc3 
-        = (7U & (vlSelfRef.Soc__DOT__Rv32_codemem__DOT__mem
-                 [(0xfffffU & ((vlSelfRef.Soc__DOT__rv32__DOT__Ifu_out_pc 
-                                - (IData)(0x80000000U)) 
-                               >> 2U))] >> 0xcU));
-    vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__opcode 
-        = (0x7fU & vlSelfRef.Soc__DOT__Rv32_codemem__DOT__mem
-           [(0xfffffU & ((vlSelfRef.Soc__DOT__rv32__DOT__Ifu_out_pc 
-                          - (IData)(0x80000000U)) >> 2U))]);
+    vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins = (vlSelfRef.Soc__DOT__Rv32_codemem__DOT__mem
+                                                 [(0x3fffffU 
+                                                   & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_out_pc)] 
+                                                 | (VL_SHIFTL_III(32,32,32, 
+                                                                  vlSelfRef.Soc__DOT__Rv32_codemem__DOT__mem
+                                                                  [
+                                                                  (0x3fffffU 
+                                                                   & ((IData)(1U) 
+                                                                      + vlSelfRef.Soc__DOT__rv32__DOT__Ifu_out_pc))], 8U) 
+                                                    | (VL_SHIFTL_III(32,32,32, 
+                                                                     vlSelfRef.Soc__DOT__Rv32_codemem__DOT__mem
+                                                                     [
+                                                                     (0x3fffffU 
+                                                                      & ((IData)(2U) 
+                                                                         + vlSelfRef.Soc__DOT__rv32__DOT__Ifu_out_pc))], 0x10U) 
+                                                       | VL_SHIFTL_III(32,32,32, 
+                                                                       vlSelfRef.Soc__DOT__Rv32_codemem__DOT__mem
+                                                                       [
+                                                                       (0x3fffffU 
+                                                                        & ((IData)(3U) 
+                                                                           + vlSelfRef.Soc__DOT__rv32__DOT__Ifu_out_pc))], 0x18U))));
     vlSelfRef.Soc__DOT__rv32__DOT__Decoder_out_mem_we 
-        = (0xfU & ((1U & (- (IData)(((0x23U == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__opcode)) 
-                                     & (0U == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__fuc3)))))) 
-                   | ((3U & (- (IData)(((0x23U == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__opcode)) 
-                                        & (1U == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__fuc3)))))) 
-                      | (- (IData)(((0x23U == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__opcode)) 
-                                    & (2U == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__fuc3))))))));
-    vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__is_srli 
-        = ((0x13U == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__opcode)) 
-           & (5U == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__fuc3)));
+        = (0xfU & ((1U & (- (IData)((IData)((0x23U 
+                                             == (0x707fU 
+                                                 & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins)))))) 
+                   | ((3U & (- (IData)((IData)((0x1023U 
+                                                == 
+                                                (0x707fU 
+                                                 & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins)))))) 
+                      | (- (IData)((IData)((0x2023U 
+                                            == (0x707fU 
+                                                & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins))))))));
     vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT____VdfgRegularize_hb9908eda_0_10 
-        = ((0x33U == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__opcode)) 
-           & (0U == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__fuc3)));
-    vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT____VdfgRegularize_hb9908eda_0_13 
-        = ((0x33U == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__opcode)) 
-           & (5U == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__fuc3)));
+        = (IData)((0x5013U == (0x707fU & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins)));
+    vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT____VdfgRegularize_hb9908eda_0_12 
+        = (IData)((0x33U == (0x707fU & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins)));
+    vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT____VdfgRegularize_hb9908eda_0_15 
+        = (IData)((0x5033U == (0x707fU & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins)));
     vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__is_lb 
-        = ((3U == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__opcode)) 
-           & (0U == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__fuc3)));
+        = (IData)((3U == (0x707fU & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins)));
     vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__is_lh 
-        = ((3U == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__opcode)) 
-           & (1U == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__fuc3)));
+        = (IData)((0x1003U == (0x707fU & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins)));
     vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__is_lw 
-        = ((3U == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__opcode)) 
-           & (2U == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__fuc3)));
+        = (IData)((0x2003U == (0x707fU & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins)));
     vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__is_lbu 
-        = ((3U == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__opcode)) 
-           & (4U == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__fuc3)));
+        = (IData)((0x4003U == (0x707fU & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins)));
     vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__is_lhu 
-        = ((3U == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__opcode)) 
-           & (5U == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__fuc3)));
-    vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__is_j 
-        = ((0x6fU == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__opcode)) 
-           | (0x67U == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__opcode)));
-    vlSelfRef.Soc__DOT__rv32__DOT__Regfile_in_Rb_id 
-        = (0x1fU & ((- (IData)(((0x23U == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__opcode)) 
-                                | ((0x63U == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__opcode)) 
-                                   | (0x33U == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__opcode)))))) 
-                    & (vlSelfRef.Soc__DOT__Rv32_codemem__DOT__mem
-                       [(0xfffffU & ((vlSelfRef.Soc__DOT__rv32__DOT__Ifu_out_pc 
-                                      - (IData)(0x80000000U)) 
-                                     >> 2U))] >> 0x14U)));
-    vlSelfRef.Soc__DOT__rv32__DOT__Regfile_in_Ra_id 
-        = (0x1fU & ((- (IData)(((0x13U == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__opcode)) 
-                                | ((0x23U == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__opcode)) 
-                                   | ((0x63U == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__opcode)) 
-                                      | ((0x33U == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__opcode)) 
-                                         | (0x67U == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__opcode)))))))) 
-                    & (vlSelfRef.Soc__DOT__Rv32_codemem__DOT__mem
-                       [(0xfffffU & ((vlSelfRef.Soc__DOT__rv32__DOT__Ifu_out_pc 
-                                      - (IData)(0x80000000U)) 
-                                     >> 2U))] >> 0xfU)));
+        = (IData)((0x5003U == (0x707fU & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins)));
+    Soc__DOT__rv32__DOT__RV32I_Decoder__DOT____VdfgRegularize_hb9908eda_0_19 
+        = (((- (IData)((vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins 
+                        >> 0x1fU))) << 0xbU) | (0x7ffU 
+                                                & (vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins 
+                                                   >> 0x14U)));
+    vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Alu__DOT__is_j 
+        = ((0x6fU == (0x7fU & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins)) 
+           | (0x67U == (0x7fU & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins)));
+    Soc__DOT__rv32__DOT__RV32I_Decoder__DOT____VdfgRegularize_hb9908eda_0_22 
+        = ((0x63U == (0x7fU & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins)) 
+           | (0x33U == (0x7fU & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins)));
     vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__is_u 
-        = ((0x37U == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__opcode)) 
-           | (0x17U == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__opcode)));
+        = ((0x37U == (0x7fU & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins)) 
+           | (0x17U == (0x7fU & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins)));
     vlSelfRef.Soc__DOT__rv32__DOT__Decoder_out_mem_re 
         = ((1U & (- (IData)((IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__is_lb)))) 
            | ((2U & (- (IData)((IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__is_lh)))) 
               | ((4U & (- (IData)((IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__is_lw)))) 
                  | ((8U & (- (IData)((IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__is_lbu)))) 
                     | (0x10U & (- (IData)((IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__is_lhu))))))));
+    vlSelfRef.Soc__DOT__rv32__DOT__Regfile_in_Ra_id 
+        = (0x1fU & ((- (IData)(((0x13U == (0x7fU & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins)) 
+                                | ((0x23U == (0x7fU 
+                                              & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins)) 
+                                   | ((IData)(Soc__DOT__rv32__DOT__RV32I_Decoder__DOT____VdfgRegularize_hb9908eda_0_22) 
+                                      | ((0x67U == 
+                                          (0x7fU & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins)) 
+                                         | (3U == (0x7fU 
+                                                   & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins)))))))) 
+                    & (vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins 
+                       >> 0xfU)));
+    vlSelfRef.Soc__DOT__rv32__DOT__Regfile_in_Rb_id 
+        = (0x1fU & ((- (IData)(((0x23U == (0x7fU & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins)) 
+                                | (IData)(Soc__DOT__rv32__DOT__RV32I_Decoder__DOT____VdfgRegularize_hb9908eda_0_22)))) 
+                    & (vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins 
+                       >> 0x14U)));
+    vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT____VdfgRegularize_hb9908eda_0_21 
+        = ((0x13U == (0x7fU & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins)) 
+           | ((IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__is_u) 
+              | (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Alu__DOT__is_j)));
+    vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__is_auipc 
+        = ((IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__is_u) 
+           & (0x17U == (0x7fU & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins)));
+    vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_jmp_addr 
+        = (((- (IData)((0x6fU == (0x7fU & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins)))) 
+            & (vlSelfRef.Soc__DOT__rv32__DOT__Ifu_out_pc 
+               + (((- (IData)((vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins 
+                               >> 0x1fU))) << 0x14U) 
+                  | (((0xff000U & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins) 
+                      | (0x800U & (vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins 
+                                   >> 9U))) | (0x7feU 
+                                               & (vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins 
+                                                  >> 0x14U)))))) 
+           | ((((- (IData)((0x67U == (0x7fU & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins)))) 
+                << 2U) & (vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Regfile__DOT__general_reg
+                          [vlSelfRef.Soc__DOT__rv32__DOT__Regfile_in_Ra_id] 
+                          + Soc__DOT__rv32__DOT__RV32I_Decoder__DOT____VdfgRegularize_hb9908eda_0_19)) 
+              | ((- (IData)((0x63U == (0x7fU & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins)))) 
+                 & (vlSelfRef.Soc__DOT__rv32__DOT__Ifu_out_pc 
+                    + (((- (IData)((vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins 
+                                    >> 0x1fU))) << 0xcU) 
+                       | ((0x800U & (vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins 
+                                     << 4U)) | ((0x7e0U 
+                                                 & (vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins 
+                                                    >> 0x14U)) 
+                                                | (0x1eU 
+                                                   & (vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins 
+                                                      >> 7U)))))))));
     vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_jmp_en = 
-        ((IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__is_j) 
-         | ((((0x63U == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__opcode)) 
-              & (0U == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__fuc3))) 
+        ((IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Alu__DOT__is_j) 
+         | (((IData)((0x63U == (0x707fU & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins))) 
              & (vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Regfile__DOT__general_reg
                 [vlSelfRef.Soc__DOT__rv32__DOT__Regfile_in_Ra_id] 
                 == vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Regfile__DOT__general_reg
                 [vlSelfRef.Soc__DOT__rv32__DOT__Regfile_in_Rb_id])) 
-            | ((((0x63U == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__opcode)) 
-                 & (1U == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__fuc3))) 
+            | (((IData)((0x1063U == (0x707fU & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins))) 
                 & (vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Regfile__DOT__general_reg
                    [vlSelfRef.Soc__DOT__rv32__DOT__Regfile_in_Ra_id] 
                    != vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Regfile__DOT__general_reg
                    [vlSelfRef.Soc__DOT__rv32__DOT__Regfile_in_Rb_id])) 
-               | ((((0x63U == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__opcode)) 
-                    & (4U == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__fuc3))) 
+               | (((IData)((0x4063U == (0x707fU & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins))) 
                    & VL_LTS_III(32, vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Regfile__DOT__general_reg
                                 [vlSelfRef.Soc__DOT__rv32__DOT__Regfile_in_Ra_id], 
                                 vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Regfile__DOT__general_reg
                                 [vlSelfRef.Soc__DOT__rv32__DOT__Regfile_in_Rb_id])) 
-                  | ((((0x63U == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__opcode)) 
-                       & (5U == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__fuc3))) 
-                      & VL_GTS_III(32, vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Regfile__DOT__general_reg
-                                   [vlSelfRef.Soc__DOT__rv32__DOT__Regfile_in_Ra_id], 
-                                   vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Regfile__DOT__general_reg
-                                   [vlSelfRef.Soc__DOT__rv32__DOT__Regfile_in_Rb_id])) 
-                     | ((((0x63U == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__opcode)) 
-                          & (6U == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__fuc3))) 
+                  | (((IData)((0x5063U == (0x707fU 
+                                           & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins))) 
+                      & VL_GTES_III(32, vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Regfile__DOT__general_reg
+                                    [vlSelfRef.Soc__DOT__rv32__DOT__Regfile_in_Ra_id], 
+                                    vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Regfile__DOT__general_reg
+                                    [vlSelfRef.Soc__DOT__rv32__DOT__Regfile_in_Rb_id])) 
+                     | (((IData)((0x6063U == (0x707fU 
+                                              & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins))) 
                          & (vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Regfile__DOT__general_reg
                             [vlSelfRef.Soc__DOT__rv32__DOT__Regfile_in_Ra_id] 
                             < vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Regfile__DOT__general_reg
                             [vlSelfRef.Soc__DOT__rv32__DOT__Regfile_in_Rb_id])) 
-                        | (((0x63U == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__opcode)) 
-                            & (7U == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__fuc3))) 
+                        | ((IData)((0x7063U == (0x707fU 
+                                                & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins))) 
                            & (vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Regfile__DOT__general_reg
                               [vlSelfRef.Soc__DOT__rv32__DOT__Regfile_in_Ra_id] 
-                              > vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Regfile__DOT__general_reg
+                              >= vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Regfile__DOT__general_reg
                               [vlSelfRef.Soc__DOT__rv32__DOT__Regfile_in_Rb_id]))))))));
-    vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT____VdfgRegularize_hb9908eda_0_19 
-        = ((0x13U == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__opcode)) 
-           | ((IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__is_u) 
-              | (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__is_j)));
-    vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__is_auipc 
-        = ((IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__is_u) 
-           & (0x17U == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__opcode)));
     vlSelfRef.Soc__DOT__rv32__DOT__Regfile_in_rd_id 
-        = ((- (IData)((IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT____VdfgRegularize_hb9908eda_0_19))) 
-           & (IData)(Soc__DOT__rv32__DOT__RV32I_Decoder__DOT____VdfgRegularize_hb9908eda_0_14));
+        = (0x1fU & ((- (IData)(((IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT____VdfgRegularize_hb9908eda_0_21) 
+                                | ((0x33U == (0x7fU 
+                                              & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins)) 
+                                   | (3U == (0x7fU 
+                                             & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins)))))) 
+                    & (vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins 
+                       >> 7U)));
     vlSelfRef.Soc__DOT__rv32__DOT__Decoder_out_imm 
-        = (((- (IData)(((0x13U == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__opcode)) 
-                        | (0x67U == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__opcode))))) 
-            & (((- (IData)((IData)(Soc__DOT__rv32__DOT__RV32I_Decoder__DOT____VdfgRegularize_hb9908eda_0_15))) 
-                << 0xbU) | (0x7ffU & (vlSelfRef.Soc__DOT__Rv32_codemem__DOT__mem
-                                      [(0xfffffU & 
-                                        ((vlSelfRef.Soc__DOT__rv32__DOT__Ifu_out_pc 
-                                          - (IData)(0x80000000U)) 
-                                         >> 2U))] >> 0x14U)))) 
+        = (((- (IData)(((0x13U == (0x7fU & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins)) 
+                        | (3U == (0x7fU & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins))))) 
+            & Soc__DOT__rv32__DOT__RV32I_Decoder__DOT____VdfgRegularize_hb9908eda_0_19) 
            | (((- (IData)((IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__is_u))) 
                & (((- (IData)((IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__is_auipc))) 
                    & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_out_pc) 
-                  + (0xfffff000U & vlSelfRef.Soc__DOT__Rv32_codemem__DOT__mem
-                     [(0xfffffU & ((vlSelfRef.Soc__DOT__rv32__DOT__Ifu_out_pc 
-                                    - (IData)(0x80000000U)) 
-                                   >> 2U))]))) | ((
-                                                   (- (IData)(
-                                                              (0x23U 
-                                                               == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__opcode)))) 
-                                                   & (((- (IData)((IData)(Soc__DOT__rv32__DOT__RV32I_Decoder__DOT____VdfgRegularize_hb9908eda_0_15))) 
-                                                       << 0xbU) 
-                                                      | (((IData)(Soc__DOT__rv32__DOT__RV32I_Decoder__DOT____VdfgRegularize_hb9908eda_0_17) 
-                                                          << 5U) 
-                                                         | (IData)(Soc__DOT__rv32__DOT__RV32I_Decoder__DOT____VdfgRegularize_hb9908eda_0_14)))) 
-                                                  | ((- (IData)(
-                                                                (0x6fU 
-                                                                 == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__opcode)))) 
-                                                     & ((IData)(4U) 
-                                                        + vlSelfRef.Soc__DOT__rv32__DOT__Ifu_out_pc)))));
-    vlSelfRef.Soc__DOT__rv32__DOT__Alu_out_mem_addr 
-        = (vlSelfRef.Soc__DOT__rv32__DOT__Decoder_out_imm 
-           + vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Regfile__DOT__general_reg
-           [vlSelfRef.Soc__DOT__rv32__DOT__Regfile_in_Ra_id]);
-    vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_jmp_addr 
-        = (((- (IData)((0x6fU == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__opcode)))) 
-            & (vlSelfRef.Soc__DOT__rv32__DOT__Ifu_out_pc 
-               + (((- (IData)((IData)(Soc__DOT__rv32__DOT__RV32I_Decoder__DOT____VdfgRegularize_hb9908eda_0_15))) 
-                   << 0x14U) | (((0xff000U & vlSelfRef.Soc__DOT__Rv32_codemem__DOT__mem
-                                  [(0xfffffU & ((vlSelfRef.Soc__DOT__rv32__DOT__Ifu_out_pc 
-                                                 - (IData)(0x80000000U)) 
-                                                >> 2U))]) 
-                                 | (0x800U & (vlSelfRef.Soc__DOT__Rv32_codemem__DOT__mem
-                                              [(0xfffffU 
-                                                & ((vlSelfRef.Soc__DOT__rv32__DOT__Ifu_out_pc 
-                                                    - (IData)(0x80000000U)) 
-                                                   >> 2U))] 
-                                              >> 9U))) 
-                                | (0x7feU & (vlSelfRef.Soc__DOT__Rv32_codemem__DOT__mem
-                                             [(0xfffffU 
-                                               & ((vlSelfRef.Soc__DOT__rv32__DOT__Ifu_out_pc 
-                                                   - (IData)(0x80000000U)) 
-                                                  >> 2U))] 
-                                             >> 0x14U)))))) 
-           | (((- (IData)((0x67U == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__opcode)))) 
-               & (vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Regfile__DOT__general_reg
-                  [vlSelfRef.Soc__DOT__rv32__DOT__Regfile_in_Ra_id] 
-                  + vlSelfRef.Soc__DOT__rv32__DOT__Decoder_out_imm)) 
-              | ((- (IData)((0x63U == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__opcode)))) 
-                 & (vlSelfRef.Soc__DOT__rv32__DOT__Ifu_out_pc 
-                    + (((- (IData)((IData)(Soc__DOT__rv32__DOT__RV32I_Decoder__DOT____VdfgRegularize_hb9908eda_0_15))) 
-                        << 0xcU) | ((0x800U & (vlSelfRef.Soc__DOT__Rv32_codemem__DOT__mem
-                                               [(0xfffffU 
-                                                 & ((vlSelfRef.Soc__DOT__rv32__DOT__Ifu_out_pc 
-                                                     - (IData)(0x80000000U)) 
-                                                    >> 2U))] 
-                                               << 4U)) 
-                                    | (((IData)(Soc__DOT__rv32__DOT__RV32I_Decoder__DOT____VdfgRegularize_hb9908eda_0_17) 
-                                        << 5U) | (0x1eU 
-                                                  & (vlSelfRef.Soc__DOT__Rv32_codemem__DOT__mem
-                                                     [
-                                                     (0xfffffU 
-                                                      & ((vlSelfRef.Soc__DOT__rv32__DOT__Ifu_out_pc 
-                                                          - (IData)(0x80000000U)) 
-                                                         >> 2U))] 
-                                                     >> 7U)))))))));
-    vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Alu__DOT__alu_src 
-        = (vlSelfRef.Soc__DOT__rv32__DOT__Decoder_out_imm 
-           | vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Regfile__DOT__general_reg
-           [vlSelfRef.Soc__DOT__rv32__DOT__Regfile_in_Rb_id]);
+                  + (0xfffff000U & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins))) 
+              | (((- (IData)((0x23U == (0x7fU & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins)))) 
+                  & (((- (IData)((vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins 
+                                  >> 0x1fU))) << 0xbU) 
+                     | ((0x7e0U & (vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins 
+                                   >> 0x14U)) | (0x1fU 
+                                                 & (vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins 
+                                                    >> 7U))))) 
+                 | ((- (IData)((IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Alu__DOT__is_j))) 
+                    & ((IData)(4U) + vlSelfRef.Soc__DOT__rv32__DOT__Ifu_out_pc)))));
     vlSelfRef.Soc__DOT__rv32__DOT__Ifu_ne_out_pc = 
         ((IData)(vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_jmp_en)
           ? vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_jmp_addr
           : vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Ifu__DOT__n_pc);
-    Soc__DOT__rv32__DOT__RV32I_Alu__DOT____VdfgRegularize_h81d224ff_0_1 
+    vlSelfRef.Soc__DOT__rv32__DOT__Alu_out_mem_addr 
+        = (vlSelfRef.Soc__DOT__rv32__DOT__Decoder_out_imm 
+           + vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Regfile__DOT__general_reg
+           [vlSelfRef.Soc__DOT__rv32__DOT__Regfile_in_Ra_id]);
+    vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Alu__DOT__alu_src 
+        = (vlSelfRef.Soc__DOT__rv32__DOT__Decoder_out_imm 
+           | vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Regfile__DOT__general_reg
+           [vlSelfRef.Soc__DOT__rv32__DOT__Regfile_in_Rb_id]);
+    vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Alu__DOT__srl_out 
         = (vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Regfile__DOT__general_reg
            [vlSelfRef.Soc__DOT__rv32__DOT__Regfile_in_Ra_id] 
            >> (0x1fU & vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Alu__DOT__alu_src));
-    vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Ifu__DOT__ne_is_c 
-        = (3U != (3U & vlSelfRef.Soc__DOT__Rv32_codemem__DOT__mem
-                  [(0xfffffU & ((vlSelfRef.Soc__DOT__rv32__DOT__Ifu_ne_out_pc 
-                                 - (IData)(0x80000000U)) 
-                                >> 2U))]));
     vlSelfRef.Soc__DOT__rv32__DOT__Alu_out_data = (
                                                    ((- (IData)(
-                                                               (((0x13U 
-                                                                  == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__opcode)) 
-                                                                 & (0U 
-                                                                    == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__fuc3))) 
-                                                                | (((IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT____VdfgRegularize_hb9908eda_0_10) 
+                                                               ((IData)(
+                                                                        (0x13U 
+                                                                         == 
+                                                                         (0x707fU 
+                                                                          & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins))) 
+                                                                | (((IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT____VdfgRegularize_hb9908eda_0_12) 
                                                                     & (0U 
-                                                                       == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__fuc7))) 
+                                                                       == 
+                                                                       (vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins 
+                                                                        >> 0x19U))) 
                                                                    | ((IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__is_lb) 
                                                                       | ((IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__is_lh) 
                                                                          | ((IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__is_lw) 
@@ -463,158 +530,146 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__1(VSoc___024root* vlSelf) 
                                                                                | ((IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__is_lhu) 
                                                                                 | (((IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__is_u) 
                                                                                 & (0x37U 
-                                                                                == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__opcode))) 
-                                                                                | ((IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__is_auipc) 
-                                                                                | (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__is_j)))))))))))) 
+                                                                                == 
+                                                                                (0x7fU 
+                                                                                & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins))) 
+                                                                                | (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__is_auipc))))))))))) 
                                                     & (vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Regfile__DOT__general_reg
                                                        [vlSelfRef.Soc__DOT__rv32__DOT__Regfile_in_Ra_id] 
                                                        + vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Alu__DOT__alu_src)) 
                                                    | (((- (IData)(
-                                                                  ((IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT____VdfgRegularize_hb9908eda_0_10) 
+                                                                  ((IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT____VdfgRegularize_hb9908eda_0_12) 
                                                                    & (0x20U 
-                                                                      == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__fuc7))))) 
+                                                                      == 
+                                                                      (vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins 
+                                                                       >> 0x19U))))) 
                                                        & (vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Regfile__DOT__general_reg
                                                           [vlSelfRef.Soc__DOT__rv32__DOT__Regfile_in_Ra_id] 
                                                           - vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Alu__DOT__alu_src)) 
                                                       | (((- (IData)(
-                                                                     (((0x33U 
-                                                                        == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__opcode)) 
-                                                                       & ((1U 
-                                                                           == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__fuc3)) 
-                                                                          & (0U 
-                                                                             == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__fuc7)))) 
-                                                                      | ((0x13U 
-                                                                          == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__opcode)) 
-                                                                         & (1U 
-                                                                            == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__fuc3)))))) 
+                                                                     ((IData)(
+                                                                              (0x1033U 
+                                                                               == 
+                                                                               (0xfe00707fU 
+                                                                                & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins))) 
+                                                                      | (IData)(
+                                                                                (0x1013U 
+                                                                                == 
+                                                                                (0x707fU 
+                                                                                & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins)))))) 
                                                           & (vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Regfile__DOT__general_reg
                                                              [vlSelfRef.Soc__DOT__rv32__DOT__Regfile_in_Ra_id] 
                                                              << 
                                                              (0x1fU 
                                                               & vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Alu__DOT__alu_src))) 
                                                          | (((- (IData)(
-                                                                        (((IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT____VdfgRegularize_hb9908eda_0_13) 
+                                                                        (((IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT____VdfgRegularize_hb9908eda_0_15) 
                                                                           & (0U 
-                                                                             == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__fuc7))) 
-                                                                         | (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__is_srli)))) 
-                                                             & Soc__DOT__rv32__DOT__RV32I_Alu__DOT____VdfgRegularize_h81d224ff_0_1) 
+                                                                             == 
+                                                                             (vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins 
+                                                                              >> 0x19U))) 
+                                                                         | ((~ 
+                                                                             (vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins 
+                                                                              >> 0x1eU)) 
+                                                                            & (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT____VdfgRegularize_hb9908eda_0_10))))) 
+                                                             & vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Alu__DOT__srl_out) 
                                                             | (((- (IData)(
-                                                                           (((IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT____VdfgRegularize_hb9908eda_0_13) 
+                                                                           (((IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT____VdfgRegularize_hb9908eda_0_15) 
                                                                              & (0x20U 
-                                                                                == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__fuc7))) 
-                                                                            | (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__is_srli)))) 
-                                                                & Soc__DOT__rv32__DOT__RV32I_Alu__DOT____VdfgRegularize_h81d224ff_0_1) 
+                                                                                == 
+                                                                                (vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins 
+                                                                                >> 0x19U))) 
+                                                                            | ((IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT____VdfgRegularize_hb9908eda_0_10) 
+                                                                               & (vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins 
+                                                                                >> 0x1eU))))) 
+                                                                & (vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Alu__DOT__srl_out 
+                                                                   | ((vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Regfile__DOT__general_reg
+                                                                       [vlSelfRef.Soc__DOT__rv32__DOT__Regfile_in_Ra_id] 
+                                                                       >> 0x1fU)
+                                                                       ? 
+                                                                      (~ 
+                                                                       (0xffffffffU 
+                                                                        >> 
+                                                                        (0x1fU 
+                                                                         & vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Alu__DOT__alu_src)))
+                                                                       : 0U))) 
                                                                | (((- (IData)(
-                                                                              (((0x33U 
-                                                                                == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__opcode)) 
-                                                                                & ((7U 
-                                                                                == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__fuc3)) 
-                                                                                & (0U 
-                                                                                == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__fuc7)))) 
-                                                                               | ((0x13U 
-                                                                                == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__opcode)) 
-                                                                                & (7U 
-                                                                                == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__fuc3)))))) 
+                                                                              ((IData)(
+                                                                                (0x7033U 
+                                                                                == 
+                                                                                (0xfe00707fU 
+                                                                                & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins))) 
+                                                                               | (IData)(
+                                                                                (0x7013U 
+                                                                                == 
+                                                                                (0x707fU 
+                                                                                & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins)))))) 
                                                                    & (vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Regfile__DOT__general_reg
                                                                       [vlSelfRef.Soc__DOT__rv32__DOT__Regfile_in_Ra_id] 
                                                                       & vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Alu__DOT__alu_src)) 
                                                                   | (((- (IData)(
-                                                                                (((0x33U 
-                                                                                == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__opcode)) 
-                                                                                & ((6U 
-                                                                                == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__fuc3)) 
-                                                                                & (0U 
-                                                                                == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__fuc7)))) 
-                                                                                | ((0x13U 
-                                                                                == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__opcode)) 
-                                                                                & (6U 
-                                                                                == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__fuc3)))))) 
+                                                                                ((IData)(
+                                                                                (0x6033U 
+                                                                                == 
+                                                                                (0xfe00707fU 
+                                                                                & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins))) 
+                                                                                | (IData)(
+                                                                                (0x6013U 
+                                                                                == 
+                                                                                (0x707fU 
+                                                                                & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins)))))) 
                                                                       & (vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Regfile__DOT__general_reg
                                                                          [vlSelfRef.Soc__DOT__rv32__DOT__Regfile_in_Ra_id] 
                                                                          | vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Alu__DOT__alu_src)) 
                                                                      | (((- (IData)(
-                                                                                (((0x33U 
-                                                                                == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__opcode)) 
-                                                                                & ((4U 
-                                                                                == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__fuc3)) 
-                                                                                & (0U 
-                                                                                == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__fuc7)))) 
-                                                                                | ((0x13U 
-                                                                                == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__opcode)) 
-                                                                                & (4U 
-                                                                                == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__fuc3)))))) 
+                                                                                ((IData)(
+                                                                                (0x4033U 
+                                                                                == 
+                                                                                (0xfe00707fU 
+                                                                                & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins))) 
+                                                                                | (IData)(
+                                                                                (0x4013U 
+                                                                                == 
+                                                                                (0x707fU 
+                                                                                & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins)))))) 
                                                                          & (vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Regfile__DOT__general_reg
                                                                             [vlSelfRef.Soc__DOT__rv32__DOT__Regfile_in_Ra_id] 
                                                                             ^ vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Alu__DOT__alu_src)) 
                                                                         | (((- (IData)(
-                                                                                (((0x33U 
-                                                                                == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__opcode)) 
-                                                                                & ((2U 
-                                                                                == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__fuc3)) 
-                                                                                & (0U 
-                                                                                == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__fuc7)))) 
-                                                                                | ((0x13U 
-                                                                                == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__opcode)) 
-                                                                                & (2U 
-                                                                                == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__fuc3)))))) 
-                                                                            & (- (IData)(
-                                                                                VL_LTS_III(32, 
+                                                                                ((IData)(
+                                                                                (0x2033U 
+                                                                                == 
+                                                                                (0xfe00707fU 
+                                                                                & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins))) 
+                                                                                | (IData)(
+                                                                                (0x2013U 
+                                                                                == 
+                                                                                (0x707fU 
+                                                                                & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins)))))) 
+                                                                            & VL_LTS_III(32, 
                                                                                 vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Regfile__DOT__general_reg
-                                                                                [vlSelfRef.Soc__DOT__rv32__DOT__Regfile_in_Ra_id], vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Alu__DOT__alu_src)))) 
+                                                                                [vlSelfRef.Soc__DOT__rv32__DOT__Regfile_in_Ra_id], vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Alu__DOT__alu_src)) 
                                                                            | (((- (IData)(
-                                                                                (((0x33U 
-                                                                                == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__opcode)) 
-                                                                                & ((3U 
-                                                                                == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__fuc3)) 
-                                                                                & (0U 
-                                                                                == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__fuc7)))) 
-                                                                                | ((0x13U 
-                                                                                == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__opcode)) 
-                                                                                & (3U 
-                                                                                == (IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Decoder__DOT__fuc3)))))) 
-                                                                               & (- (IData)(
-                                                                                (vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Regfile__DOT__general_reg
+                                                                                ((IData)(
+                                                                                (0x3033U 
+                                                                                == 
+                                                                                (0xfe00707fU 
+                                                                                & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins))) 
+                                                                                | (IData)(
+                                                                                (0x3013U 
+                                                                                == 
+                                                                                (0x707fU 
+                                                                                & vlSelfRef.Soc__DOT__rv32__DOT__Ifu_in_ins)))))) 
+                                                                               & (vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Regfile__DOT__general_reg
                                                                                 [vlSelfRef.Soc__DOT__rv32__DOT__Regfile_in_Ra_id] 
-                                                                                < vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Alu__DOT__alu_src)))) 
-                                                                              | ((- (IData)(
+                                                                                < vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Alu__DOT__alu_src)) 
+                                                                              | (((- (IData)((IData)(vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Alu__DOT__is_j))) 
+                                                                                & vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Alu__DOT__alu_src) 
+                                                                                | ((- (IData)(
                                                                                 (0U 
                                                                                 != (IData)(vlSelfRef.Soc__DOT__rv32__DOT__Decoder_out_mem_we)))) 
                                                                                 & vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Regfile__DOT__general_reg
-                                                                                [vlSelfRef.Soc__DOT__rv32__DOT__Regfile_in_Rb_id])))))))))));
-}
-
-VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__2(VSoc___024root* vlSelf) {
-    VL_DEBUG_IF(VL_DBG_MSGF("+    VSoc___024root___nba_sequent__TOP__2\n"); );
-    VSoc__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
-    auto& vlSelfRef = std::ref(*vlSelf).get();
-    // Body
-    if (vlSelfRef.__VdlySet__Soc__DOT__Rv32_datamem__DOT__mem__v0) {
-        vlSelfRef.Soc__DOT__Rv32_datamem__DOT__mem[vlSelfRef.__VdlyDim0__Soc__DOT__Rv32_datamem__DOT__mem__v0] 
-            = ((0xffffff00U & vlSelfRef.Soc__DOT__Rv32_datamem__DOT__mem
-                [vlSelfRef.__VdlyDim0__Soc__DOT__Rv32_datamem__DOT__mem__v0]) 
-               | (IData)(vlSelfRef.__VdlyVal__Soc__DOT__Rv32_datamem__DOT__mem__v0));
-    }
-    if (vlSelfRef.__VdlySet__Soc__DOT__Rv32_datamem__DOT__mem__v1) {
-        vlSelfRef.Soc__DOT__Rv32_datamem__DOT__mem[vlSelfRef.__VdlyDim0__Soc__DOT__Rv32_datamem__DOT__mem__v1] 
-            = ((0xffff00ffU & vlSelfRef.Soc__DOT__Rv32_datamem__DOT__mem
-                [vlSelfRef.__VdlyDim0__Soc__DOT__Rv32_datamem__DOT__mem__v1]) 
-               | ((IData)(vlSelfRef.__VdlyVal__Soc__DOT__Rv32_datamem__DOT__mem__v1) 
-                  << 8U));
-    }
-    if (vlSelfRef.__VdlySet__Soc__DOT__Rv32_datamem__DOT__mem__v2) {
-        vlSelfRef.Soc__DOT__Rv32_datamem__DOT__mem[vlSelfRef.__VdlyDim0__Soc__DOT__Rv32_datamem__DOT__mem__v2] 
-            = ((0xff00ffffU & vlSelfRef.Soc__DOT__Rv32_datamem__DOT__mem
-                [vlSelfRef.__VdlyDim0__Soc__DOT__Rv32_datamem__DOT__mem__v2]) 
-               | ((IData)(vlSelfRef.__VdlyVal__Soc__DOT__Rv32_datamem__DOT__mem__v2) 
-                  << 0x10U));
-    }
-    if (vlSelfRef.__VdlySet__Soc__DOT__Rv32_datamem__DOT__mem__v3) {
-        vlSelfRef.Soc__DOT__Rv32_datamem__DOT__mem[vlSelfRef.__VdlyDim0__Soc__DOT__Rv32_datamem__DOT__mem__v3] 
-            = ((0xffffffU & vlSelfRef.Soc__DOT__Rv32_datamem__DOT__mem
-                [vlSelfRef.__VdlyDim0__Soc__DOT__Rv32_datamem__DOT__mem__v3]) 
-               | ((IData)(vlSelfRef.__VdlyVal__Soc__DOT__Rv32_datamem__DOT__mem__v3) 
-                  << 0x18U));
-    }
+                                                                                [vlSelfRef.Soc__DOT__rv32__DOT__Regfile_in_Rb_id]))))))))))));
 }
 
 VL_INLINE_OPT void VSoc___024root___nba_comb__TOP__0(VSoc___024root* vlSelf) {
@@ -622,14 +677,18 @@ VL_INLINE_OPT void VSoc___024root___nba_comb__TOP__0(VSoc___024root* vlSelf) {
     VSoc__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     auto& vlSelfRef = std::ref(*vlSelf).get();
     // Body
-    vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Memu__DOT____VdfgRegularize_hd9a39314_0_0 
-        = (0xffU & vlSelfRef.Soc__DOT__Rv32_datamem__DOT__mem
-           [(0xfffffU & ((vlSelfRef.Soc__DOT__rv32__DOT__Alu_out_mem_addr 
-                          - (IData)(0x80400000U)) >> 2U))]);
-    vlSelfRef.Soc__DOT__rv32__DOT__RV32I_Memu__DOT____VdfgRegularize_hd9a39314_0_1 
-        = (0xffffU & vlSelfRef.Soc__DOT__Rv32_datamem__DOT__mem
-           [(0xfffffU & ((vlSelfRef.Soc__DOT__rv32__DOT__Alu_out_mem_addr 
-                          - (IData)(0x80400000U)) >> 2U))]);
+    vlSelfRef.Soc__DOT__rv32__DOT__Memu_in_mem_data 
+        = (vlSelfRef.Soc__DOT__Rv32_datamem__DOT__mem
+           [(0x3fffffU & vlSelfRef.Soc__DOT__rv32__DOT__Alu_out_mem_addr)] 
+           | (VL_SHIFTL_III(32,32,32, vlSelfRef.Soc__DOT__Rv32_datamem__DOT__mem
+                            [(0x3fffffU & ((IData)(1U) 
+                                           + vlSelfRef.Soc__DOT__rv32__DOT__Alu_out_mem_addr))], 8U) 
+              | (VL_SHIFTL_III(32,32,32, vlSelfRef.Soc__DOT__Rv32_datamem__DOT__mem
+                               [(0x3fffffU & ((IData)(2U) 
+                                              + vlSelfRef.Soc__DOT__rv32__DOT__Alu_out_mem_addr))], 0x10U) 
+                 | VL_SHIFTL_III(32,32,32, vlSelfRef.Soc__DOT__Rv32_datamem__DOT__mem
+                                 [(0x3fffffU & ((IData)(3U) 
+                                                + vlSelfRef.Soc__DOT__rv32__DOT__Alu_out_mem_addr))], 0x18U))));
 }
 
 void VSoc___024root___eval_triggers__act(VSoc___024root* vlSelf);

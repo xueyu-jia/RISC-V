@@ -42,16 +42,15 @@ void generator_signature(uint32_t _sigmem_start,uint32_t sigmem_end);
 int load_bin();
 void excitation_signal(uint32_t _sym_tohost_addr);
 bool load_binary_into_memory(const char* filename,
-                             uint32_t* memory_ptr, // 假设内存是 uint32_t 类型的数组
-                             size_t memory_word_count,
-                             size_t memory_word_byte_size,
-                             size_t load_base_address_words);
+                             uint8_t* memory_ptr, // 假设内存是 uint8_t 类型的数组
+                             size_t memory_byte_count,
+                             size_t load_base_address);
 
 VerilatedContext* contextp;
 VSoc* top;
 VerilatedVcdC* tfp;
-uint32_t* datamem;
-uint32_t* codemem;
+uint8_t* datamem;
+uint8_t* codemem;
 
 
 const char* arg_sym_tohost_addr="sym_tohost_addr=";
@@ -144,8 +143,9 @@ VerilatedVcdC* generator_vcd(){
 
 static inline uint32_t read_memory(uint32_t addr){
 	uint32_t val;
-    if(addr<DATA_OFFSET) val=codemem[(addr-CODE_OFFSET)>>WORDLEN_SHIFT];
-    else val=datamem[(addr-DATA_OFFSET)>>WORDLEN_SHIFT];
+    if(addr<DATA_OFFSET) 
+		val=(codemem[(addr-CODE_OFFSET)])|(codemem[(addr-CODE_OFFSET)+1]<<8)|(codemem[(addr-CODE_OFFSET)+2]<<16)|(codemem[(addr-CODE_OFFSET)+3]<<24);
+    else val=(datamem[(addr-DATA_OFFSET)])|(datamem[(addr-DATA_OFFSET)+1]<<8)|(datamem[(addr-DATA_OFFSET)+2]<<16)|(datamem[(addr-DATA_OFFSET)+3]<<24);
 
 	return val;
 }
@@ -165,8 +165,18 @@ void generator_signature(uint32_t _sigmem_start,uint32_t _sigmem_end){
 }
 
 static inline void write_memory(uint32_t addr,uint32_t val){
-    if(addr<DATA_OFFSET) codemem[(addr-CODE_OFFSET)>>WORDLEN_SHIFT]=val;
-    else datamem[(addr-DATA_OFFSET)>>WORDLEN_SHIFT]=val;
+    if(addr<DATA_OFFSET){
+		codemem[(addr-CODE_OFFSET)]=(val)&0xFF;
+		codemem[(addr-CODE_OFFSET)+1]=(val>>8)&0xFF;
+		codemem[(addr-CODE_OFFSET)+2]=(val>>16)&0xFF;
+		codemem[(addr-CODE_OFFSET)+3]=(val>>24)&0xFF;
+	}
+	else {
+		datamem[(addr-DATA_OFFSET)]=(val)&0xFF;
+		datamem[(addr-DATA_OFFSET)+1]=(val>>8)&0xFF;
+		datamem[(addr-DATA_OFFSET)+2]=(val>>16)&0xFF;
+		datamem[(addr-DATA_OFFSET)+3]=(val>>24)&0xFF;
+	}
 }
 
 uint32_t str2int(const char* str){
@@ -217,9 +227,9 @@ int load_bin(){
 	if(err=sym_parse()) return err;
 
 	const char* loadcode_path= arg_parse(arg_loadcode);
-	if(!load_binary_into_memory(loadcode_path,codemem,CODEMEM_COUNT,WORDLEN,0)) return FAIL_LOAD_CODE;
+	if(!load_binary_into_memory(loadcode_path,codemem,CODEMEM_SIZE,0)) return FAIL_LOAD_CODE;
 	const char* loaddata_path= arg_parse(arg_loaddata);
-    if(!load_binary_into_memory(loaddata_path,datamem,DATAMEM_COUNT,WORDLEN,0)) return FAIL_LOAD_DATA;
+    if(!load_binary_into_memory(loaddata_path,datamem,DATAMEM_SIZE,0)) return FAIL_LOAD_DATA;
 
     uint32_t val;
 	for(uint32_t addr=CODE_OFFSET;addr<=CODE_OFFSET+0x100;addr+=4){
@@ -260,17 +270,15 @@ void excitation_signal(uint32_t _sym_tohost_addr){
  *
  * @param filename 要加载的二进制文件的路径。
  * @param memory_ptr 指向模拟内存 C++ 数组的指针。
- * @param memory_word_count 模拟内存的总容量，以“字”（word）为单位。
- * @param memory_word_byte_size 每个“字”的字节大小（例如，32位宽的内存，word_byte_size 就是 4）。
- * @param load_base_address_words 二进制数据在模拟内存中开始加载的地址（以“字”为单位）。
+ * @param memory_byte_count 模拟内存的总容量，以“字节”（word）为单位。
+ * @param load_base_address 二进制数据在模拟内存中开始加载的地址（以“字节”为单位）。
  * @return true 加载成功。
  * @return false 加载失败（文件找不到、读取错误、内存溢出）。
  */
 bool load_binary_into_memory(const char* filename,
-                             uint32_t* memory_ptr, // 假设内存是 uint32_t 类型的数组
-                             size_t memory_word_count,
-                             size_t memory_word_byte_size,
-                             size_t load_base_address_words) {
+                             uint8_t* memory_ptr, // 假设内存是 uint8_t 类型的数组
+                             size_t memory_byte_count,
+                             size_t load_base_address) {
 
     std::ifstream infile(filename, std::ios::binary | std::ios::in);
 
@@ -290,27 +298,12 @@ bool load_binary_into_memory(const char* filename,
         return true; // 空文件也算加载成功，但无内容
     }
 
-    // 检查文件大小是否是字大小的整数倍
-    if (file_size_bytes % memory_word_byte_size != 0) {
-        std::cerr << "Warning: Binary file size (" << file_size_bytes
-                  << " bytes) is not a multiple of memory word size ("
-                  << memory_word_byte_size << " bytes)."
-                  << " Trailing bytes might be ignored." << std::endl;
-		return false;
-    }
-
-    // 计算需要加载多少个字
-    size_t words_to_load = file_size_bytes / memory_word_byte_size;
-	if (file_size_bytes % memory_word_byte_size != 0) {
-		words_to_load++; // 如果有剩余字节，多分配一个字空间（假设内存模型会处理未满的字）
-	}
-
 
     // 检查是否会超出模拟内存范围
-    if (load_base_address_words + words_to_load > memory_word_count) {
-        std::cerr << "Error: Binary file size (" << file_size_bytes << " bytes, equivalent to approx. " << words_to_load << " words)"
-                  << " exceeds available memory space starting at word address " << load_base_address_words << "."
-                  << " Memory size is " << memory_word_count << " words." << std::endl;
+    if (load_base_address + file_size_bytes > memory_byte_count) {
+        std::cerr << "Error: Binary file size (" << file_size_bytes << " bytes)"
+                  << " exceeds available memory space starting at address " << load_base_address << "."
+                  << " Memory size is " << memory_byte_count << " byte." << std::endl;
         infile.close();
         return false;
     }
@@ -327,35 +320,24 @@ bool load_binary_into_memory(const char* filename,
 
     infile.close();
 
-    // 将缓冲区内容按字拷贝到模拟内存
+    // 将缓冲区内容按字节拷贝到模拟内存
     // 假设二进制文件是小端序 (Little-Endian)，RISC-V 标准 bin 文件通常是小端序
-    for (size_t i = 0; i < file_size_bytes; i += memory_word_byte_size) {
-        uint32_t word = 0;
-        // 从缓冲区读取 memory_word_byte_size 个字节，并组合成一个字
-        for (size_t j = 0; j < memory_word_byte_size; ++j) {
-            if (i + j < file_size_bytes) { // 确保不越界，处理文件末尾不足一个字的情况
-                 word |= (static_cast<uint32_t>(static_cast<uint8_t>(buffer[i + j])) << (j * 8));
-            } else {
-                // 文件末尾不足一个字的部分，可以根据需要决定是否填充 0 或报错
-                // 这里选择填充 0
-                break; // 已经处理完文件内容
-            }
-        }
+    for (size_t index = 0; index < file_size_bytes; index += 1) {
+        uint8_t val = 0;
+		val = static_cast<uint8_t>(buffer[index]);
 
-        // 将字写入模拟内存的对应位置
-        size_t memory_index = load_base_address_words + (i / memory_word_byte_size);
-        if (memory_index < memory_word_count) { // 再次检查，确保不会意外写越界
-             memory_ptr[memory_index] = word;
+        if (index < memory_byte_count) { // 再次检查，确保不会意外写越界
+             memory_ptr[index] = val;
         } else {
-            std::cerr << "Internal Error: Calculated memory index " << memory_index
+            std::cerr << "Internal Error: Calculated memory index " << index
                       << " is out of bounds during loading. This should not happen." << std::endl;
             return false; // 内部逻辑错误
         }
     }
 
     std::cout << "Successfully loaded binary file '" << filename << "' ("
-              << file_size_bytes << " bytes) into memory starting at word address "
-              << load_base_address_words << "." << std::endl;
+              << file_size_bytes << " bytes) into memory starting at address "
+              << load_base_address << "." << std::endl;
 
     return true;
 }
