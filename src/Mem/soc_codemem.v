@@ -1,11 +1,12 @@
+`include"Mem_Macro.v"
+
 module soc_codemem#(
-	parameter MEM_BASE = 32'h80000000,
-	parameter MEM_SIZE = 32'h00400000)(
+	parameter MEM_SIZE = `CODEMEM_SIZE)(
 	input wire clk,
 	input wire [31:0] addr1,
-	output reg [31:0] rdata1,
+	output wire [31:0] rdata1,
     input wire [31:0] addr2,
-    output reg [31:0] rdata2
+    output wire [31:0] rdata2
 );
 
 

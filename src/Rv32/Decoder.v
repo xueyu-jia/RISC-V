@@ -1,4 +1,4 @@
-`include"Macro.v"
+`include"Rv32_Macro.v"
 //译码模块，对in_ins也就是指令进行分析，
 module Decoder(
     //输入PC指针和当前待译码指令

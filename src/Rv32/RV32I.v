@@ -1,9 +1,7 @@
-`include "Macro.v"
 module RV32I(
     input clk,
     input rst,
     
-    output wire       codemem_valid,
 	output wire[31:0] codemem_addr,
 	input  wire[31:0] codemem_rdata,
     output wire[31:0] codemem_ne_addr,
@@ -11,11 +9,10 @@ module RV32I(
 
 	//input             mem_ready,
 
-    output wire       datamem_valid,
 	output wire[31:0] datamem_addr,
 	input  wire[31:0] datamem_rdata,
 	output wire[31:0] datamem_wdata,
-	output wire[ 3:0] datamem_wstrb
+	output wire[ 3:0] datamem_wen
 );
 
 
@@ -50,7 +47,6 @@ Regfile RV32I_Regfile(
 wire[31:0] Ifu_in_ins=codemem_rdata;
 wire[31:0] Ifu_out_pc;
 wire[31:0] Ifu_out_ins;
-wire       Ifu_out_mem_valid;  
 wire Ifu_in_jmp_en;
 wire[31:0] Ifu_in_jmp_addr;
 wire[31:0] Ifu_ne_in_ins=codemem_ne_rdata;
@@ -61,14 +57,12 @@ Ifu RV32I_Ifu(
     .rst(rst),
     .in_ins(Ifu_in_ins),
     .ne_in_ins(Ifu_ne_in_ins),
-    .out_mem_valid(Ifu_out_mem_valid),
     .out_pc(Ifu_out_pc),
     .ne_out_pc(Ifu_ne_out_pc),
     .out_ins(Ifu_out_ins),
     .in_Jmp_en(Ifu_in_jmp_en),
     .in_Jmp_addr(Ifu_in_jmp_addr)
 );
-assign codemem_valid=Ifu_out_mem_valid;
 assign codemem_addr=Ifu_out_pc;
 assign codemem_ne_addr=Ifu_ne_out_pc;
 
@@ -187,10 +181,8 @@ wire[4:0] Memu_out_rd_id;
 wire Memu_out_rd_we;
 wire[31:0] Memu_out_rd_data;
 
-wire Memu_out_mem_valid;
 
-
-Memu RV32I_Memu(
+Mem RV32I_Memu(
     .in_addr(Memu_in_addr),
     .in_mem_data(Memu_in_mem_data),
 
@@ -199,7 +191,6 @@ Memu RV32I_Memu(
     .in_alu_data(Memu_in_alu_data),
 
     .out_addr(Memu_out_mem_addr),
-    .out_mem_valid(Memu_out_mem_valid),
     .in_mem_re(Memu_in_mem_re),
     .in_mem_we(Memu_in_mem_we),
     .out_mem_data(Memu_out_mem_data),
@@ -211,10 +202,9 @@ Memu RV32I_Memu(
     .out_rd_data(Memu_out_rd_data)
 );
 
-assign datamem_valid=Memu_out_mem_valid;
 assign datamem_addr=Memu_out_mem_addr;
 assign datamem_wdata=Memu_out_mem_data;
-assign datamem_wstrb=Memu_out_mem_we;
+assign datamem_wen=Memu_out_mem_we;
 
 wire[4:0] Wbu_in_rd_id=Memu_out_rd_id;
 wire Wbu_in_rd_we=Memu_out_rd_we;

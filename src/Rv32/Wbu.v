@@ -1,5 +1,3 @@
-`include"Macro.v"
-
 //回写模块，将数据写入寄存器中
 module Wbu(
     input wire[4:0] in_rd_id,

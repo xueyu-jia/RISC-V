@@ -31,6 +31,13 @@ class alignas(VL_CACHE_LINE_BYTES) VSoc VL_NOT_FINAL : public VerilatedModel {
     // propagate new values into/out from the Verilated model.
     VL_IN8(&clk,0,0);
     VL_IN8(&rst,0,0);
+    VL_IN8(&butten,4,0);
+    VL_OUT8(&seg0_cs,3,0);
+    VL_OUT8(&seg0_data,7,0);
+    VL_OUT8(&seg1_cs,3,0);
+    VL_OUT8(&seg1_data,7,0);
+    VL_IN16(&swi,15,0);
+    VL_OUT16(&led,15,0);
 
     // CELLS
     // Public to allow access to /* verilator public */ items.

@@ -1,4 +1,5 @@
-`include"Macro.v"
+`include"Rv32_Macro.v"
+
 //运算模块，完成逻辑运算、算术运算、移位运算或者计算内存地址
 module Alu(
     //用于从译码模块接收
@@ -43,7 +44,7 @@ module Alu(
     wire is_slt=in_op[`SLT_OP];
     wire is_sltu=in_op[`SLTU_OP];
     wire is_j=in_op[`J_OP];
-    wire is_memw=(in_mem_we!==0);
+    wire is_memw=(in_mem_we!=0);
     
     wire[31:0] add_out=in_src1+alu_src;
     wire[31:0] sub_out=in_src1-alu_src;

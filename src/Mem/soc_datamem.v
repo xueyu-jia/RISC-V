@@ -1,11 +1,10 @@
 module soc_datamem#(
-	parameter MEM_BASE = 32'h80400000,
-	parameter MEM_SIZE = 32'h00400000)(
+	parameter MEM_SIZE = `DATAMEM_BASE)(
 	input wire clk,
 	input wire [3:0] wen,
 	input wire [31:0] addr,
 	input wire[31:0] wdata,
-	output reg [31:0] rdata
+	output wire [31:0] rdata
 );
 
 	reg [7:0] mem[0:MEM_SIZE-1];

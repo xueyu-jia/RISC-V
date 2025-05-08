@@ -12,6 +12,13 @@ VSoc::VSoc(VerilatedContext* _vcontextp__, const char* _vcname__)
     , vlSymsp{new VSoc__Syms(contextp(), _vcname__, this)}
     , clk{vlSymsp->TOP.clk}
     , rst{vlSymsp->TOP.rst}
+    , butten{vlSymsp->TOP.butten}
+    , seg0_cs{vlSymsp->TOP.seg0_cs}
+    , seg0_data{vlSymsp->TOP.seg0_data}
+    , seg1_cs{vlSymsp->TOP.seg1_cs}
+    , seg1_data{vlSymsp->TOP.seg1_data}
+    , swi{vlSymsp->TOP.swi}
+    , led{vlSymsp->TOP.led}
     , rootp{&(vlSymsp->TOP)}
 {
     // Register model with the context

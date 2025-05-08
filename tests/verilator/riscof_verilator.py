@@ -30,10 +30,10 @@ class verilator(pluginTemplate):
             raise SystemExit(1)
         #verilator路径
         self.dut_exe = os.path.join(config['PATH'] if 'PATH' in config else "","verilator")
-               #待verilator编译的verilog模型源码路径
-        self.module_src = config['MODULE_SRC'] if 'MODULE_SRC' in config else "../../src/*.v"
+        #待verilator编译的verilog模型源码路径
+        self.module_src = config['MODULE_SRC'] if 'MODULE_SRC' in config else "../../src/*.v ../../src/*/*.v"
         #verilator编译时需要查找的头文件路径
-        self.module_inc = config['MODULE_INC'] if 'MODULE_INC' in config else "../../src"
+        self.module_inc = config['MODULE_INC'] if 'MODULE_INC' in config else "-I../../src -I../../src/Mem -I../../src/Device -I../../src/Rv32"
         #仿真激励文件路径
         self.stimuli_src = config['STIMULI_SRC'] if 'STIMULI_SRC' in config else "../verilator_main.cc"
         #顶层模块名
@@ -116,7 +116,7 @@ class verilator(pluginTemplate):
       make.makeCommand = 'make -k -j' + self.num_jobs
 
       #Compile verilator
-      verilator_cmd = self.dut_exe+' '+'--cc {0} {1} -I{2} --exe -top-module {3} --trace --build -Mdir {4}'.format(
+      verilator_cmd = self.dut_exe+' '+"--cc {0} {1} {2} --exe -top-module {3} --trace --build -Mdir {4}".format(
             self.module_src,self.stimuli_src,self.module_inc,self.top_module,self.build_dir
       )
       make.add_target(verilator_cmd)

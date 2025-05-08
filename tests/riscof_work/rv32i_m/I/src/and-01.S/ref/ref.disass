@@ -1,5 +1,5 @@
 
-ref.elf：     文件格式 elf32-littleriscv
+ref.elf:     file format elf32-littleriscv
 
 
 Disassembly of section .text.init:

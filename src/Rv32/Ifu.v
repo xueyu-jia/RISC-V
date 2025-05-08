@@ -1,3 +1,4 @@
+`include"Rv32_Macro.v"
 `include"Macro.v"
 
 //取指模块
@@ -11,7 +12,6 @@ module Ifu(
     //从存储器中读入指令
     input wire[31:0] in_ins,
     input wire[31:0] ne_in_ins,
-    output reg out_mem_valid,
     //保存当前PC的值
     output reg[31:0] out_pc,
     output wire[31:0] ne_out_pc,
@@ -30,19 +30,16 @@ module Ifu(
         begin
             if(rst==`RST)   
                 begin
-                    out_mem_valid<=`MEM_INVALID;
                     out_pc<=`RST_PC;
                     n_pc<=`RST_PC;
                 end
             else if(in_Jmp_en)
                 begin
-                    out_mem_valid<=`MEM_VALID;
                     out_pc<=in_Jmp_addr;
                     n_pc<=in_Jmp_addr+((32'h2&{32{ne_is_c}}) |  (32'h4&{32{~ne_is_c}}));
                 end
             else
                 begin
-                    out_mem_valid<=`MEM_VALID; 
                     out_pc<=n_pc;
                     n_pc<=n_pc+((32'h2&{32{ne_is_c}}) |  (32'h4&{32{~ne_is_c}}));
                 end
