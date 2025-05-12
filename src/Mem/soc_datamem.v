@@ -1,3 +1,5 @@
+`include "Mem_Macro.v"
+
 module soc_datamem#(
 	parameter MEM_SIZE = `DATAMEM_BASE)(
 	input wire clk,
@@ -6,8 +8,15 @@ module soc_datamem#(
 	input wire[31:0] wdata,
 	output wire [31:0] rdata
 );
-
 	reg [7:0] mem[0:MEM_SIZE-1];
+
+`ifndef TEST
+	localparam DATA_FILE="/home/bob/RISC_V/RISC-V/firmware/af_led.data.hex";
+	initial
+	begin
+		$readmemh(DATA_FILE,mem);
+	end
+`endif
 
 	wire[31:0] data0={24'b0,mem[addr]};
 	wire[31:0] data1={24'b0,mem[addr+1]};

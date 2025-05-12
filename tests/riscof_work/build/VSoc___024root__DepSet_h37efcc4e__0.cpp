@@ -194,52 +194,70 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__1(VSoc___024root* vlSelf) 
         vlSelfRef.__VdlyCommitQueueSoc__DOT__Rv32_devport__DOT__iomem.enqueue(__VdlyVal__Soc__DOT__Rv32_devport__DOT__iomem__v1, 0U);
         __VdlyVal__Soc__DOT__Rv32_devport__DOT__iomem__v2 
             = (0xffU & (IData)(vlSelfRef.swi));
-        vlSelfRef.__VdlyCommitQueueSoc__DOT__Rv32_devport__DOT__iomem.enqueue(__VdlyVal__Soc__DOT__Rv32_devport__DOT__iomem__v2, 1U);
+        vlSelfRef.__VdlyCommitQueueSoc__DOT__Rv32_devport__DOT__iomem.enqueue(__VdlyVal__Soc__DOT__Rv32_devport__DOT__iomem__v2, 4U);
         __VdlyVal__Soc__DOT__Rv32_devport__DOT__iomem__v3 
             = (0xffU & ((IData)(vlSelfRef.swi) >> 8U));
-        vlSelfRef.__VdlyCommitQueueSoc__DOT__Rv32_devport__DOT__iomem.enqueue(__VdlyVal__Soc__DOT__Rv32_devport__DOT__iomem__v3, 2U);
+        vlSelfRef.__VdlyCommitQueueSoc__DOT__Rv32_devport__DOT__iomem.enqueue(__VdlyVal__Soc__DOT__Rv32_devport__DOT__iomem__v3, 5U);
         if (((0U != ((- (IData)((IData)(vlSelfRef.Soc__DOT__Rv32_Memclt__DOT__is_iomem))) 
                      & (IData)(vlSelfRef.Soc__DOT__Rv32_out_datamem_wen))) 
-             & (0x500U <= (vlSelfRef.Soc__DOT__Rv32_out_datamem_addr 
+             & (0x100U <= (vlSelfRef.Soc__DOT__Rv32_out_datamem_addr 
                            - (IData)(0xfffff000U))))) {
-            vlSelfRef.Soc__DOT__Rv32_devport__DOT____Vlvbound_h5e86654e__0 
-                = (0xffU & vlSelfRef.Soc__DOT__Rv32_out_datamem_wdata);
-            if ((0x4ffU >= (0x7ffU & vlSelfRef.Soc__DOT__Rv32_out_datamem_addr))) {
-                __VdlyVal__Soc__DOT__Rv32_devport__DOT__iomem__v4 
-                    = vlSelfRef.Soc__DOT__Rv32_devport__DOT____Vlvbound_h5e86654e__0;
-                __VdlyDim0__Soc__DOT__Rv32_devport__DOT__iomem__v4 
-                    = (0x7ffU & vlSelfRef.Soc__DOT__Rv32_out_datamem_addr);
-                vlSelfRef.__VdlyCommitQueueSoc__DOT__Rv32_devport__DOT__iomem.enqueue(__VdlyVal__Soc__DOT__Rv32_devport__DOT__iomem__v4, (IData)(__VdlyDim0__Soc__DOT__Rv32_devport__DOT__iomem__v4));
+            if (((IData)(vlSelfRef.Soc__DOT__Rv32_Memclt__DOT__is_iomem) 
+                 & (IData)(vlSelfRef.Soc__DOT__Rv32_out_datamem_wen))) {
+                vlSelfRef.Soc__DOT__Rv32_devport__DOT____Vlvbound_h5e86654e__0 
+                    = (0xffU & vlSelfRef.Soc__DOT__Rv32_out_datamem_wdata);
+                if ((0x4ffU >= (0x7ffU & vlSelfRef.Soc__DOT__Rv32_out_datamem_addr))) {
+                    __VdlyVal__Soc__DOT__Rv32_devport__DOT__iomem__v4 
+                        = vlSelfRef.Soc__DOT__Rv32_devport__DOT____Vlvbound_h5e86654e__0;
+                    __VdlyDim0__Soc__DOT__Rv32_devport__DOT__iomem__v4 
+                        = (0x7ffU & vlSelfRef.Soc__DOT__Rv32_out_datamem_addr);
+                    vlSelfRef.__VdlyCommitQueueSoc__DOT__Rv32_devport__DOT__iomem.enqueue(__VdlyVal__Soc__DOT__Rv32_devport__DOT__iomem__v4, (IData)(__VdlyDim0__Soc__DOT__Rv32_devport__DOT__iomem__v4));
+                }
             }
-            vlSelfRef.Soc__DOT__Rv32_devport__DOT____Vlvbound_h5e86654e__1 
-                = (0xffU & (vlSelfRef.Soc__DOT__Rv32_out_datamem_wdata 
-                            >> 8U));
-            if ((0x4ffU >= (0x7ffU & vlSelfRef.Soc__DOT__Rv32_out_datamem_addr))) {
-                __VdlyVal__Soc__DOT__Rv32_devport__DOT__iomem__v5 
-                    = vlSelfRef.Soc__DOT__Rv32_devport__DOT____Vlvbound_h5e86654e__1;
-                __VdlyDim0__Soc__DOT__Rv32_devport__DOT__iomem__v5 
-                    = (0x7ffU & vlSelfRef.Soc__DOT__Rv32_out_datamem_addr);
-                vlSelfRef.__VdlyCommitQueueSoc__DOT__Rv32_devport__DOT__iomem.enqueue(__VdlyVal__Soc__DOT__Rv32_devport__DOT__iomem__v5, (IData)(__VdlyDim0__Soc__DOT__Rv32_devport__DOT__iomem__v5));
+            if (((IData)(vlSelfRef.Soc__DOT__Rv32_Memclt__DOT__is_iomem) 
+                 & ((IData)(vlSelfRef.Soc__DOT__Rv32_out_datamem_wen) 
+                    >> 1U))) {
+                vlSelfRef.Soc__DOT__Rv32_devport__DOT____Vlvbound_he043ccaa__0 
+                    = (0xffU & (vlSelfRef.Soc__DOT__Rv32_out_datamem_wdata 
+                                >> 8U));
+                if ((0x4ffU >= (0x7ffU & ((IData)(1U) 
+                                          + vlSelfRef.Soc__DOT__Rv32_out_datamem_addr)))) {
+                    __VdlyVal__Soc__DOT__Rv32_devport__DOT__iomem__v5 
+                        = vlSelfRef.Soc__DOT__Rv32_devport__DOT____Vlvbound_he043ccaa__0;
+                    __VdlyDim0__Soc__DOT__Rv32_devport__DOT__iomem__v5 
+                        = (0x7ffU & ((IData)(1U) + vlSelfRef.Soc__DOT__Rv32_out_datamem_addr));
+                    vlSelfRef.__VdlyCommitQueueSoc__DOT__Rv32_devport__DOT__iomem.enqueue(__VdlyVal__Soc__DOT__Rv32_devport__DOT__iomem__v5, (IData)(__VdlyDim0__Soc__DOT__Rv32_devport__DOT__iomem__v5));
+                }
             }
-            vlSelfRef.Soc__DOT__Rv32_devport__DOT____Vlvbound_h5e86654e__2 
-                = (0xffU & (vlSelfRef.Soc__DOT__Rv32_out_datamem_wdata 
-                            >> 0x10U));
-            if ((0x4ffU >= (0x7ffU & vlSelfRef.Soc__DOT__Rv32_out_datamem_addr))) {
-                __VdlyVal__Soc__DOT__Rv32_devport__DOT__iomem__v6 
-                    = vlSelfRef.Soc__DOT__Rv32_devport__DOT____Vlvbound_h5e86654e__2;
-                __VdlyDim0__Soc__DOT__Rv32_devport__DOT__iomem__v6 
-                    = (0x7ffU & vlSelfRef.Soc__DOT__Rv32_out_datamem_addr);
-                vlSelfRef.__VdlyCommitQueueSoc__DOT__Rv32_devport__DOT__iomem.enqueue(__VdlyVal__Soc__DOT__Rv32_devport__DOT__iomem__v6, (IData)(__VdlyDim0__Soc__DOT__Rv32_devport__DOT__iomem__v6));
+            if (((IData)(vlSelfRef.Soc__DOT__Rv32_Memclt__DOT__is_iomem) 
+                 & ((IData)(vlSelfRef.Soc__DOT__Rv32_out_datamem_wen) 
+                    >> 2U))) {
+                vlSelfRef.Soc__DOT__Rv32_devport__DOT____Vlvbound_he0447b2f__0 
+                    = (0xffU & (vlSelfRef.Soc__DOT__Rv32_out_datamem_wdata 
+                                >> 0x10U));
+                if ((0x4ffU >= (0x7ffU & ((IData)(2U) 
+                                          + vlSelfRef.Soc__DOT__Rv32_out_datamem_addr)))) {
+                    __VdlyVal__Soc__DOT__Rv32_devport__DOT__iomem__v6 
+                        = vlSelfRef.Soc__DOT__Rv32_devport__DOT____Vlvbound_he0447b2f__0;
+                    __VdlyDim0__Soc__DOT__Rv32_devport__DOT__iomem__v6 
+                        = (0x7ffU & ((IData)(2U) + vlSelfRef.Soc__DOT__Rv32_out_datamem_addr));
+                    vlSelfRef.__VdlyCommitQueueSoc__DOT__Rv32_devport__DOT__iomem.enqueue(__VdlyVal__Soc__DOT__Rv32_devport__DOT__iomem__v6, (IData)(__VdlyDim0__Soc__DOT__Rv32_devport__DOT__iomem__v6));
+                }
             }
-            vlSelfRef.Soc__DOT__Rv32_devport__DOT____Vlvbound_h5e86654e__3 
-                = (vlSelfRef.Soc__DOT__Rv32_out_datamem_wdata 
-                   >> 0x18U);
-            if ((0x4ffU >= (0x7ffU & vlSelfRef.Soc__DOT__Rv32_out_datamem_addr))) {
-                __VdlyVal__Soc__DOT__Rv32_devport__DOT__iomem__v7 
-                    = vlSelfRef.Soc__DOT__Rv32_devport__DOT____Vlvbound_h5e86654e__3;
-                __VdlyDim0__Soc__DOT__Rv32_devport__DOT__iomem__v7 
-                    = (0x7ffU & vlSelfRef.Soc__DOT__Rv32_out_datamem_addr);
-                vlSelfRef.__VdlyCommitQueueSoc__DOT__Rv32_devport__DOT__iomem.enqueue(__VdlyVal__Soc__DOT__Rv32_devport__DOT__iomem__v7, (IData)(__VdlyDim0__Soc__DOT__Rv32_devport__DOT__iomem__v7));
+            if (((IData)(vlSelfRef.Soc__DOT__Rv32_Memclt__DOT__is_iomem) 
+                 & ((IData)(vlSelfRef.Soc__DOT__Rv32_out_datamem_wen) 
+                    >> 3U))) {
+                vlSelfRef.Soc__DOT__Rv32_devport__DOT____Vlvbound_he0442d3e__0 
+                    = (vlSelfRef.Soc__DOT__Rv32_out_datamem_wdata 
+                       >> 0x18U);
+                if ((0x4ffU >= (0x7ffU & ((IData)(3U) 
+                                          + vlSelfRef.Soc__DOT__Rv32_out_datamem_addr)))) {
+                    __VdlyVal__Soc__DOT__Rv32_devport__DOT__iomem__v7 
+                        = vlSelfRef.Soc__DOT__Rv32_devport__DOT____Vlvbound_he0442d3e__0;
+                    __VdlyDim0__Soc__DOT__Rv32_devport__DOT__iomem__v7 
+                        = (0x7ffU & ((IData)(3U) + vlSelfRef.Soc__DOT__Rv32_out_datamem_addr));
+                    vlSelfRef.__VdlyCommitQueueSoc__DOT__Rv32_devport__DOT__iomem.enqueue(__VdlyVal__Soc__DOT__Rv32_devport__DOT__iomem__v7, (IData)(__VdlyDim0__Soc__DOT__Rv32_devport__DOT__iomem__v7));
+                }
             }
         }
     }
@@ -422,13 +440,13 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__1(VSoc___024root* vlSelf) 
                       [0x101U] << 8U) | vlSelfRef.Soc__DOT__Rv32_devport__DOT__iomem
                      [0x100U]);
     vlSelfRef.seg0_cs = (0xfU & vlSelfRef.Soc__DOT__Rv32_devport__DOT__iomem
-                         [0x102U]);
-    vlSelfRef.seg0_data = vlSelfRef.Soc__DOT__Rv32_devport__DOT__iomem
-        [0x103U];
-    vlSelfRef.seg1_cs = (0xfU & vlSelfRef.Soc__DOT__Rv32_devport__DOT__iomem
                          [0x104U]);
-    vlSelfRef.seg1_data = vlSelfRef.Soc__DOT__Rv32_devport__DOT__iomem
+    vlSelfRef.seg0_data = vlSelfRef.Soc__DOT__Rv32_devport__DOT__iomem
         [0x105U];
+    vlSelfRef.seg1_cs = (0xfU & vlSelfRef.Soc__DOT__Rv32_devport__DOT__iomem
+                         [0x108U]);
+    vlSelfRef.seg1_data = vlSelfRef.Soc__DOT__Rv32_devport__DOT__iomem
+        [0x109U];
     vlSelfRef.Soc__DOT__Rv32__DOT__RV32I_Ifu__DOT__n_pc 
         = __Vdly__Soc__DOT__Rv32__DOT__RV32I_Ifu__DOT__n_pc;
     vlSelfRef.Soc__DOT__Rv32_in_codemem_rdata = (vlSelfRef.Soc__DOT__Rv32_codemem__DOT__mem

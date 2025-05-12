@@ -386,7 +386,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__0(VSoc___024root* vlSelf,
     tracep->declBus(c+21,0,"out_seg0_data",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 7,0);
     tracep->declBus(c+160,0,"out_seg1_cs",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 3,0);
     tracep->declBus(c+22,0,"out_seg1_data",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 7,0);
-    tracep->declBus(c+171,0,"MEMRO_END",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::PARAMETER, VerilatedTraceSigType::LOGIC, false,-1, 31,0);
+    tracep->declBus(c+170,0,"MEMRO_END",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::PARAMETER, VerilatedTraceSigType::LOGIC, false,-1, 31,0);
     tracep->declBus(c+148,0,"data0",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 31,0);
     tracep->declBus(c+149,0,"data1",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 31,0);
     tracep->declBus(c+150,0,"data2",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 31,0);
@@ -577,9 +577,9 @@ VL_ATTR_COLD void VSoc___024root__trace_full_0_sub_0(VSoc___024root* vlSelf, Ver
     bufp->fullCData(oldp+20,(((- (IData)((IData)(vlSelfRef.Soc__DOT__Rv32_Memclt__DOT__is_iomem))) 
                               & (IData)(vlSelfRef.Soc__DOT__Rv32_out_datamem_wen))),4);
     bufp->fullCData(oldp+21,(vlSelfRef.Soc__DOT__Rv32_devport__DOT__iomem
-                             [0x103U]),8);
-    bufp->fullCData(oldp+22,(vlSelfRef.Soc__DOT__Rv32_devport__DOT__iomem
                              [0x105U]),8);
+    bufp->fullCData(oldp+22,(vlSelfRef.Soc__DOT__Rv32_devport__DOT__iomem
+                             [0x109U]),8);
     bufp->fullCData(oldp+23,(vlSelfRef.Soc__DOT__Rv32__DOT__Regfile_in_rd_id),5);
     bufp->fullBit(oldp+24,(((IData)(vlSelfRef.Soc__DOT__Rv32__DOT__RV32I_Decoder__DOT____VdfgRegularize_hb9908eda_0_21) 
                             | ((3U == (0x7fU & vlSelfRef.Soc__DOT__Rv32_in_codemem_rdata)) 

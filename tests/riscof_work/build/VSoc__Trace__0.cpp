@@ -140,9 +140,9 @@ void VSoc___024root__trace_chg_0_sub_0(VSoc___024root* vlSelf, VerilatedVcd::Buf
         bufp->chgCData(oldp+19,(((- (IData)((IData)(vlSelfRef.Soc__DOT__Rv32_Memclt__DOT__is_iomem))) 
                                  & (IData)(vlSelfRef.Soc__DOT__Rv32_out_datamem_wen))),4);
         bufp->chgCData(oldp+20,(vlSelfRef.Soc__DOT__Rv32_devport__DOT__iomem
-                                [0x103U]),8);
-        bufp->chgCData(oldp+21,(vlSelfRef.Soc__DOT__Rv32_devport__DOT__iomem
                                 [0x105U]),8);
+        bufp->chgCData(oldp+21,(vlSelfRef.Soc__DOT__Rv32_devport__DOT__iomem
+                                [0x109U]),8);
         bufp->chgCData(oldp+22,(vlSelfRef.Soc__DOT__Rv32__DOT__Regfile_in_rd_id),5);
         bufp->chgBit(oldp+23,(((IData)(vlSelfRef.Soc__DOT__Rv32__DOT__RV32I_Decoder__DOT____VdfgRegularize_hb9908eda_0_21) 
                                | ((3U == (0x7fU & vlSelfRef.Soc__DOT__Rv32_in_codemem_rdata)) 

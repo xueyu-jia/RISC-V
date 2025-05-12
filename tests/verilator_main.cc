@@ -231,12 +231,6 @@ int load_bin(){
 	const char* loaddata_path= arg_parse(arg_loaddata);
     if(!load_binary_into_memory(loaddata_path,datamem,DATAMEM_SIZE,0)) return FAIL_LOAD_DATA;
 
-    uint32_t val;
-	for(uint32_t addr=CODE_OFFSET;addr<=CODE_OFFSET+0x100;addr+=4){
-		val=read_memory(addr);
-		printf("%08x:%08x\n",addr,val);
-	}
-
 	write_memory(sym_tohost_addr,0);
 
 	return 0;

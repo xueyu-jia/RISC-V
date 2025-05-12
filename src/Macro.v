@@ -1,1 +1,1 @@
-`define RST    1'b1
+`define RST    1'b0

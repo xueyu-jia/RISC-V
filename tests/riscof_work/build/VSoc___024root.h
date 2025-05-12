@@ -44,9 +44,9 @@ class alignas(VL_CACHE_LINE_BYTES) VSoc___024root final : public VerilatedModule
     CData/*0:0*/ Soc__DOT__Rv32_Memclt__DOT__is_datamem;
     CData/*7:0*/ Soc__DOT__Rv32_devport__DOT____Vlvbound_h9ac9a602__0;
     CData/*7:0*/ Soc__DOT__Rv32_devport__DOT____Vlvbound_h5e86654e__0;
-    CData/*7:0*/ Soc__DOT__Rv32_devport__DOT____Vlvbound_h5e86654e__1;
-    CData/*7:0*/ Soc__DOT__Rv32_devport__DOT____Vlvbound_h5e86654e__2;
-    CData/*7:0*/ Soc__DOT__Rv32_devport__DOT____Vlvbound_h5e86654e__3;
+    CData/*7:0*/ Soc__DOT__Rv32_devport__DOT____Vlvbound_he043ccaa__0;
+    CData/*7:0*/ Soc__DOT__Rv32_devport__DOT____Vlvbound_he0447b2f__0;
+    CData/*7:0*/ Soc__DOT__Rv32_devport__DOT____Vlvbound_he0442d3e__0;
     CData/*0:0*/ __VstlFirstIteration;
     CData/*0:0*/ __Vtrigprevexpr___TOP__clk__0;
     CData/*0:0*/ __Vtrigprevexpr___TOP__rst__0;

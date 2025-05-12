@@ -8,9 +8,16 @@ module soc_codemem#(
     input wire [31:0] addr2,
     output wire [31:0] rdata2
 );
-
-
 	reg [7:0] mem[0:MEM_SIZE-1];
+
+`ifndef TEST
+	localparam CODE_FILE="/home/bob/RISC_V/RISC-V/firmware/af_led.code.hex";
+	initial
+	begin
+		$readmemh(CODE_FILE,mem);
+	end
+`endif
+
 
     wire[31:0] data10={24'b0,mem[addr1]};
 	wire[31:0] data11={24'b0,mem[addr1+1]};

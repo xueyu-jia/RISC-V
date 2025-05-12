@@ -101,13 +101,13 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
                       [0x101U] << 8U) | vlSelfRef.Soc__DOT__Rv32_devport__DOT__iomem
                      [0x100U]);
     vlSelfRef.seg0_cs = (0xfU & vlSelfRef.Soc__DOT__Rv32_devport__DOT__iomem
-                         [0x102U]);
-    vlSelfRef.seg0_data = vlSelfRef.Soc__DOT__Rv32_devport__DOT__iomem
-        [0x103U];
-    vlSelfRef.seg1_cs = (0xfU & vlSelfRef.Soc__DOT__Rv32_devport__DOT__iomem
                          [0x104U]);
-    vlSelfRef.seg1_data = vlSelfRef.Soc__DOT__Rv32_devport__DOT__iomem
+    vlSelfRef.seg0_data = vlSelfRef.Soc__DOT__Rv32_devport__DOT__iomem
         [0x105U];
+    vlSelfRef.seg1_cs = (0xfU & vlSelfRef.Soc__DOT__Rv32_devport__DOT__iomem
+                         [0x108U]);
+    vlSelfRef.seg1_data = vlSelfRef.Soc__DOT__Rv32_devport__DOT__iomem
+        [0x109U];
     vlSelfRef.Soc__DOT__Rv32_in_codemem_rdata = (vlSelfRef.Soc__DOT__Rv32_codemem__DOT__mem
                                                  [(0x3fffffU 
                                                    & vlSelfRef.Soc__DOT__Rv32__DOT__Ifu_out_pc)] 
@@ -672,9 +672,9 @@ VL_ATTR_COLD void VSoc___024root___ctor_var_reset(VSoc___024root* vlSelf) {
     vlSelf->Soc__DOT__Rv32_devport__DOT__i = VL_RAND_RESET_I(32);
     vlSelf->Soc__DOT__Rv32_devport__DOT____Vlvbound_h9ac9a602__0 = VL_RAND_RESET_I(8);
     vlSelf->Soc__DOT__Rv32_devport__DOT____Vlvbound_h5e86654e__0 = VL_RAND_RESET_I(8);
-    vlSelf->Soc__DOT__Rv32_devport__DOT____Vlvbound_h5e86654e__1 = VL_RAND_RESET_I(8);
-    vlSelf->Soc__DOT__Rv32_devport__DOT____Vlvbound_h5e86654e__2 = VL_RAND_RESET_I(8);
-    vlSelf->Soc__DOT__Rv32_devport__DOT____Vlvbound_h5e86654e__3 = VL_RAND_RESET_I(8);
+    vlSelf->Soc__DOT__Rv32_devport__DOT____Vlvbound_he043ccaa__0 = VL_RAND_RESET_I(8);
+    vlSelf->Soc__DOT__Rv32_devport__DOT____Vlvbound_he0447b2f__0 = VL_RAND_RESET_I(8);
+    vlSelf->Soc__DOT__Rv32_devport__DOT____Vlvbound_he0442d3e__0 = VL_RAND_RESET_I(8);
     vlSelf->__Vtrigprevexpr___TOP__clk__0 = VL_RAND_RESET_I(1);
     vlSelf->__Vtrigprevexpr___TOP__rst__0 = VL_RAND_RESET_I(1);
     for (int __Vi0 = 0; __Vi0 < 3; ++__Vi0) {

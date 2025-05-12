@@ -6,7 +6,7 @@ module Soc(
     input[4:0] butten,
     input[15:0] swi,
     output[15:0] led,
-    output[3:0] seg0_cs,
+    output[3:0] seg0_cs, 
     output[7:0] seg0_data,
     output[3:0] seg1_cs,
     output[7:0] seg1_data

@@ -2,7 +2,7 @@
 
 .PHONY : TARGET0
 TARGET0 :
-	verilator --cc ../../src/*.v ../../src/*/*.v ../verilator_main.cc -I../../src -I../../src/Mem -I../../src/Device -I../../src/Rv32 --exe -top-module Soc --trace --build -Mdir /home/bob/RISC_V/RISC-V/tests/riscof_work/build
+	verilator --cc ../../src/*.v ../../src/*/*.v ../verilator_main.cc -I../../src -I../../src/Mem -I../../src/Device -I../../src/Rv32 --exe -top-module Soc --trace --build -Mdir /home/bob/RISC_V/RISC-V/tests/riscof_work/build -DTEST
 
 .PHONY : TARGET1
 TARGET1 :

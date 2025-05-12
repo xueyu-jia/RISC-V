@@ -26,7 +26,7 @@ module Ifu(
     wire ne_is_c=(ne_in_ins[1:0]!=2'b11);
 
     //上升沿触发
-    always@(posedge clk or posedge rst)
+    always@(posedge clk or negedge rst)
         begin
             if(rst==`RST)   
                 begin

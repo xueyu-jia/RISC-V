@@ -24,7 +24,7 @@ module Regfile(
     assign out_Rb_data=general_reg[in_Rb_id];
     
     //写使能或者rst时触发写入操作
-    always@(posedge clk or posedge rst)
+    always@(posedge clk or negedge rst)
         begin
             if(rst==`RST)
                 begin

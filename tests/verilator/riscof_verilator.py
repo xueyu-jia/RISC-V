@@ -116,7 +116,7 @@ class verilator(pluginTemplate):
       make.makeCommand = 'make -k -j' + self.num_jobs
 
       #Compile verilator
-      verilator_cmd = self.dut_exe+' '+"--cc {0} {1} {2} --exe -top-module {3} --trace --build -Mdir {4}".format(
+      verilator_cmd = self.dut_exe+' '+"--cc {0} {1} {2} --exe -top-module {3} --trace --build -Mdir {4} -DTEST".format(
             self.module_src,self.stimuli_src,self.module_inc,self.top_module,self.build_dir
       )
       make.add_target(verilator_cmd)
