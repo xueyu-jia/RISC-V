@@ -1,0 +1,13 @@
+/tests/riscv-arch-test/
+/tests/riscof_work/
+/tests/debug/obj_dir/
+*.vcd
+*.elf
+*.bin
+*.signature
+**/__pycache__
+
+# 忽略IDE和编辑器的配置文件
+.idea/
+.vscode/
+*.swp
