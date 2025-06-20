@@ -58,10 +58,8 @@ fi
 #
 echo -ne "${C_YELLOW}2. 检查 RISC-V 32位 GCC 工具链...${C_NC}"
 # 我们通过检查其C编译器是否存在来判断整个工具链是否存在
-if command -v riscv32-unknown-elf-gcc &> /dev/null 
-   && command -v riscv32-unknown-elf-readelf &> /dev/null; then
+if command -v riscv32-unknown-elf-gcc &> /dev/null;then
     echo -e " ${C_GREEN}通过 (已安装)${C_NC}"
-    echo -e " ${C_GREEN}本脚本至检查riscv32-unknown-elf-gcc,请自行确保安装了整个工具链${C_NC}"
 else
     echo -e "   ${C_RED}❌ 失败！工具链不完整或未安装。${C_NC}"
     echo "   即将开始从源码自动编译安装 RISC-V 32位 GCC 工具链。"
@@ -229,11 +227,11 @@ echo -e "${C_GREEN}🎉 恭喜！所有环境检查通过，项目依赖已全�
 
 #---克隆测试样例到工作目录
 echo "-----------------------------------------"
-echo echo -e " ${C_YELLOW}克隆测试例程至工作目录...${C_NC}"
-if riscof --verbose info arch-tests --clone;then
+echo -e "${C_YELLOW}克隆测试例程至工作目录...${C_NC}"
+if riscof arch-test --clone --dir ./tests/riscv-arch-test;then
     echo -e "${C_GREEN}🎉 恭喜！测试样例克隆成功${C_NC}"
 else 
-    echo -e "   ${C_RED}❌ 测试样例克隆失败。请检查riscof和网络环境。${C_NC}"
+    echo -e "${C_RED}❌ 测试样例克隆失败。请检查riscof和网络环境。${C_NC}"
     exit 1
 fi
 
